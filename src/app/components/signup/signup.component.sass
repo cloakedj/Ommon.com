@@ -1,0 +1,40 @@
+@import "cirrus-ui/src/core/forms.css"
+@import "cirrus-ui/src/ext/form-ext.css"
+@import "cirrus-ui/src/core/font.css"
+@import "cirrus-ui/src/core/button.css"
+@import "bulma/bulma.sass"
+
+$success-color: #0dd157
+.title
+    margin-bottom:2rem !important
+
+::placeholder,.input-contains-icon
+    font-family: "montserrat",sans-serif !important
+
+.is-image-holder
+    background: url("../../../assets/signup.jpg")
+    background-position: center
+    background-size: cover
+    background-repeat: no-repeat
+    height:100%
+    filter: blur(3px)
+
+.box
+    box-shadow: none
+    border-radius: 0
+    height: 100%
+
+.columns
+    height:100vh
+
+.card
+    top: 50%
+    transform: translateY(-50%)
+    background: transparentize(black,0.7)
+    width: 30%
+    position: absolute
+    left: 50%
+    transform: translateY(-50%)
+
+.card .subtitle, .card .title
+    color:#fff
