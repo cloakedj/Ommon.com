@@ -7,48 +7,111 @@
             <h6 class="subtitle is-6">
                 Join The Biggest Network Of Professional Students.
             </h6>
+            <article class="message is-danger" *ngIf="!signUpForm.pristine && signUpForm.invalid && toggleMessageCard">
+              <div class="message-header">
+                <p>Ommon.Com Says Rectify These Errors</p>
+                <button class="delete" aria-label="delete" (click)="toggleMessageCard = false;"></button>
+              </div>
+              <div class="message-body">
+              <div class="list is-hoverable">
+                <a class="list-item" *ngIf="name.invalid">
+                <p *ngIf="name.errors?.required"><strong>
+                  Name Is Required
+                </strong></p>
+                <p *ngIf="name.errors?.maxlength"><strong>
+                  Name Should Be 30 Characters or less.
+                </strong></p>
+                </a>
+                <a class="list-item" *ngIf="pNumber.invalid">
+                  <p *ngIf="pNumber.errors?.required"><strong>
+                    Phone Number Is Required
+                  </strong></p>
+                  <p *ngIf="pNumber.errors?.minlength || pNumber.errors?.maxlength || pNumber.errors?.pattern"><strong>
+                    Enter a Valid phone Number
+                  </strong></p>
+                  </a>
+                  <a class="list-item" *ngIf="email.invalid">
+                    <p *ngIf="email.errors?.required"><strong>
+                      Email Is Required
+                    </strong></p>
+                    <p *ngIf="email.errors?.email"><strong>
+                      Enter a Valid Email Address
+                    </strong></p>
+                    </a>
+                    <a class="list-item" *ngIf="dob.invalid">
+                      <p *ngIf="dob.errors?.required"><strong>
+                        Date Of Birth Is Required
+                      </strong></p>
+                      </a>
+                      <a class="list-item" *ngIf="collegeName.invalid">
+                        <p *ngIf="collegeName.errors?.required"><strong>
+                          College Name Is Required
+                        </strong></p>
+                        <p *ngIf="collegeName.errors?.pattern"><strong>
+                            College Name Can Only Contain Characters.
+                        </strong></p>
+                        </a>
+                        <a class="list-item" *ngIf="courseName.invalid">
+                          <p *ngIf="courseName.errors?.required"><strong>
+                            Course Name Is Required
+                          </strong></p>
+                          <p *ngIf="collegeName.errors?.pattern"><strong>
+                              Course Name Can Only Contain Characters.
+                          </strong></p>
+                          </a>
+                        <a class="list-item" *ngIf="policyAgreement.invalid">
+                          <p *ngIf="policyAgreement.errors?.required"><strong>
+                            Please Agree To Ommon Terms And Conditions.
+                          </strong></p>
+                          </a>
+              </div>
+              </div>
+            </article>
+            <form [formGroup]="signUpForm">
             <div class="field input-control">
-                <input type="text" class="input-contains-icon" placeholder="Your Name"/>
+                <input type="text" formControlName="name" class="input-contains-icon" placeholder="Your Name"/>
                 <span class="icon"><i class="fa fa-wrapper fa-user"></i></span>
             </div>
             <div class="field input-control">
-                <input type="text" class="input-contains-icon" placeholder="Your Phone Number"/>
+                <input type="text" formControlName="pNumber" class="input-contains-icon" placeholder="Your Phone Number"/>
                 <span class="icon"><i class="fa fa-wrapper fa-phone"></i></span>
             </div>
             <div class="field input-control">
-                <input type="email" class="input-contains-icon" placeholder="Your Email"/>
+                <input type="email" formControlName="email" class="input-contains-icon" placeholder="Your Email"/>
                 <span class="icon"><i class="fa fa-wrapper fa-envelope"></i></span>
             </div>
             <div class="field input-control">
-                <input type="text" class="input-contains-icon" placeholder="Your Date Of birth"/>
+                <input type="text" formControlName="dob" class="input-contains-icon" placeholder="Your Date Of birth"/>
                 <span class="icon"><i class="fa fa-wrapper fa-calendar"></i></span>
             </div>
             <div class="field input-control">
-                <input type="text" class="input-contains-icon" placeholder="What Is The Name Of your College?"/>
+                <input type="text" formControlName="collegeName" class="input-contains-icon" placeholder="What Is The Name Of your College?"/>
                 <span class="icon"><i class="fa fa-wrapper fa-university"></i></span>
             </div>
             <div class="field input-control">
-                <input type="text" class="input-contains-icon" placeholder="Which Course Are You Pursuing?"/>
+                <input type="text"formControlName="courseName" class="input-contains-icon" placeholder="Which Course Are You Pursuing?"/>
                 <span class="icon"><i class="fa fa-wrapper fa-graduation-cap"></i></span>
             </div>
             <div class="field input-control">
-                <input type="checkbox" class="input-contains-icon" placeholder="Which Course Are You Pursuing?"/>
+                <input type="checkbox" formControlName="policyAgreement" class="input-contains-icon"/>
                 I Accept All The Terms And Policies Provided By Ommon.Com
             </div>
             <div class="level">
-                <button class="button is-success fluid">
+                <button class="button is-success fluid" [disabled]="signUpForm.pristine || signUpForm.invalid"
+                (click)="uploadStudentInformation(signUpForm.value)">
                     <span class="icon">
                         <i class="fas fa-check"></i>
                       </span>
                       <span>SignUp</span>
                 </button>
-                <button class="button is-danger">
+                <button class="button is-danger" (click)="signUpForm.reset()">
                     <span class="icon">
                         <i class="fas fa-times"></i>
                       </span>
                       <span>Reset</span>
                 </button>
             </div>
+            </form>
               <div class="field has-text-centered">
                 <button class="button is-small is-rounded is-dark">
                   <span class="icon">
@@ -75,7 +138,7 @@
     </div>
     <div class="column is-8 is-multiline">
         <div class="is-image-holder"></div>
-            <div class="card">
+            <div class="card" *ngIf="signUpForm.pristine || !signUpForm.invalid || !toggleMessageCard">
                 <div class="card-content">
                   <p class="title">
                     Ommon.com is the ultimate place to build scholar networks, manage events and connect with professional students.
