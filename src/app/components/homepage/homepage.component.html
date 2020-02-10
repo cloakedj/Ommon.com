@@ -1,0 +1,23 @@
+<div class="tabs is-toggle is-fullwidth">
+    <ul>
+      <li class="is-active">
+        <a [routerLink]="[{ outlets: { HomeRouter: ['competitions']}}]" routerLinkActive="active">
+          <span class="icon is-small"><i class="fas fa-image" aria-hidden="true"></i></span>
+          <span>Competitions</span>
+        </a>
+      </li>
+      <li>
+        <a [routerLink]="[{ outlets: { HomeRouter: ['events']}}]" routerLinkActive="active">
+          <span class="icon is-small"><i class="fas fa-music" aria-hidden="true"></i></span>
+          <span>Events</span>
+        </a>
+      </li>
+      <li>
+        <a [routerLink]="[{ outlets: { HomeRouter: ['collaborations']}}]" routerLinkActive="active">
+          <span class="icon is-small"><i class="fas fa-film" aria-hidden="true"></i></span>
+          <span>Collaborations</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <router-outlet name="HomeRouter"></router-outlet>
