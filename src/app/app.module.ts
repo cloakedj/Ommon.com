@@ -13,6 +13,8 @@ import { CollaborationsTabComponent } from './components/collaborations-tab/coll
 import { PostEventComponent } from './components/post-event/post-event.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { CompetitionPageComponent } from './components/competition-page/competition-page.component';
+import { UserTimelineComponent } from './components/user-timeline/user-timeline.component';
+import { AttendNavbarComponent } from './components/attend-navbar/attend-navbar.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,8 @@ import { CompetitionPageComponent } from './components/competition-page/competit
     PostEventComponent,
     NavbarComponent,
     CompetitionPageComponent,
+    UserTimelineComponent,
+    AttendNavbarComponent,
   ],
   imports: [
     BrowserModule,

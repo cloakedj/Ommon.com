@@ -1,0 +1,52 @@
+<nav class="navbar is-transparent is-fixed-bottom">
+    <div id="navbar" class="navbar-menu">
+      <div class="navbar-start">
+        <div class="field is-grouped is-grouped-multiline is-clearfix">        
+            <div class="control">
+              <div class="tags has-addons">
+                <span class="tag is-dark">
+                    <i class="far fa-calendar-alt"></i>
+                </span>
+                <span class="tag is-success">Friday, 14th Feb</span>
+              </div>
+            </div>
+            <div class="control">
+                <div class="tags has-addons">
+                  <span class="tag is-dark">
+                      <i class="fas fa-clock"></i>
+                  </span>
+                  <span class="tag is-info">4:30 PM</span>
+                </div>
+              </div>
+      </div>
+      <h4 class="title is-4">
+          "Google Developer Group"
+      </h4>
+      </div>
+  
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <div class="field is-grouped">
+            <p class="control">
+              <a class="bd-tw-button button" data-social-action="Add Event" (click)="modalOpenState = true;">
+                <span class="icon">
+                    <i class="far fa-heart"></i>
+                </span>
+              </a>
+            </p>
+            <p class="control">
+              <button class="ui negative button">
+                  Attend
+              </button>
+            </p>
+            <p class="control">
+                <button class="ui black button">
+                    View Discussion Forum
+                </button>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <app-post-event [openState]="modalOpenState" (closeState)="turnOffAddEvent($event)"></app-post-event>
