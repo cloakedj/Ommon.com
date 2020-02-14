@@ -1,55 +1,98 @@
-<div class="container">
-    <div class="columns">
-    <div class="column is-9">
-    <div class="columns is-multiline">
-    <div class="column is-4">
-    <article class="tile notification is-vertical is-info">
-        <figure class="image is-4by3">
-            <img src="https://bulma.io/images/placeholders/640x480.png">
-          </figure>
-      <p class="title">Middle tile</p>
-      <p class="subtitle">With an image</p>
-    </article>
-    </div>
-    </div>
+<div class="ui centered grid container">
+  <div class="ui hidden divider"></div>
+    <button class="ui secondary basic button">Join a Movement</button>
+    <button class="ui secondary basic button">Learn To Cook</button>
+    <button class="ui secondary basic button">Train For Marathon</button>
+    <button class="ui secondary basic button">Build Mobile App</button>
+    <button class="ui secondary basic button">Hike a Mountain</button>
+    <button class="ui secondary basic button">Practice  A Language</button>
 </div>
-<div class="column is-3">
-    <h4 class="title">Hot Competitions</h4>
-<div class="tile">
-<div class="box">
-<article class="media">
-    <div class="media-left">
-    <figure class="image is-96x96">
-        <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
-    </figure>
-    </div>
-    <div class="media-content">
-    <div class="content">
-        <h4 class="subtitle">
-            Hackathon
-        </h4>
-        <p>
-            This is a hackathon.
-        </p>
-    </div>
-    <nav class="level is-mobile">
-        <div class="level-left">
-        <a class="level-item" aria-label="View Event">
-            <span class="icon is-small">
-            <i class="fas fa-eye" aria-hidden="true"></i>
-            </span>
-        </a>
-        <a class="level-item" aria-label="Add to Later">
-            <span class="icon is-small">
-            <i class="fas fa-heart" aria-hidden="true"></i>
-            </span>
-        </a>
+<div class="ui divider"></div>
+<div class="ui stackable grid eventsContainer">
+    <div class="twelve wide column">
+    <div class="ui stackable link cards">
+    <div class="ui card" *ngFor="let pl of [0,1,2,3,4,5]">
+        <div class="content">
+          <div class="ui sub header">Fri, 13th February, 2020 @ 5:30 PM</div>
         </div>
-    </nav>
+        <div class="content">
+          <h2 class="ui header">Workshop On Evils Of Artificial Intelligence</h2>
+          <a class="ui orange label">Technology</a>
+          <div class="ui small feed">
+            <div class="event">
+              <div class="content">
+                <div class="summary">
+                   <h4 class="ui header">Christ University Bangalore</h4>
+                </div>
+                <div class="ui sub header">
+                    <i class="map marker alternate icon"></i> Christ Main Campus
+                </div>
+                <div class="ui sub header">300 Attendees</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="extra content">
+            <a href="/competition-page">
+              <button class="ui red left floated button">View Competition</button>
+            </a>
+          <button class="ui black right floated button">Attend</button>
+        </div>
+      </div>
     </div>
-</article>
+    <div class="ui divider"></div>
+    <div class="ui raised segment">
+      <div class="ui two column very relaxed stackable grid">
+        <div class="column imagecontainer">
+        </div>
+        <div class="column">
+          <h2 class="ui header">
+            Data Visualisation Using tableau in 90 Minutes
+          </h2>
+          <a class="ui violet label">Sponsored</a>
+          <a class="ui red label">Technology</a>
+          <div class="ui divider"></div>
+          <h4 class="ui sub header">    
+            <img class="ui mini rounded image" src="assets/loginback.jpg">Christ University Bangalore
+          </h4>
+          <h4 class="ui sub header">
+            <i class="map marker alternate icon"></i> Christ Main Campus, Bangalore 
+          </h4>
+          <h4 class="ui sub header">
+            <i class="calendar alternate outline icon"></i> Fri, 14th february, 2020
+          </h4>
+          <h4 class="ui sub header">
+            <i class="clock outline icon"></i>5:30 PM
+          </h4>
+          <h4 class="ui sub header">
+            500 Attendees
+          </h4>
+          <div class="ui divider"></div>
+          <div class="extra content">
+            <button class="ui positive  right floated button">View Competition</button>
+          <button class="ui olive right floated button">Attend</button>
+        </div>
+        </div>
+      </div>
+      <div class="ui vertical divider">
+      </div>
+    </div>
 </div>
-</div>
-</div>
-</div>
+    <div class="four wide column">
+        <h3 class="ui centered header">
+            Categories
+        </h3>
+        <div class="ui divider"></div>
+        <div class="column" *ngFor="let cat of categories">
+            <div class="ui fluid card">
+              <div class="image">
+                <img src="{{cat.image}}">
+              </div>
+              <div class="content">
+                <a class="ui centered header">{{cat.title}}</a>
+              </div>
+            </div>
+            <div class="ui hidden divider"></div>
+          </div>
+    </div>
 </div>

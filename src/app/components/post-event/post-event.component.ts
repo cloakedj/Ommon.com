@@ -8,12 +8,11 @@ import { EventEmitter } from 'protractor';
 })
 export class PostEventComponent implements OnInit {
   @Input() openState : boolean;
-  @Output() closeState  = new EventEmitter();
   constructor() { }
 
   ngOnInit() {
   }
   closeEventModal(){
-    this.closeState.emit("false");
+    this.openState = false;
   }
 }

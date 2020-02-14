@@ -12,6 +12,7 @@ import { EventsTabComponent } from './components/events-tab/events-tab.component
 import { CollaborationsTabComponent } from './components/collaborations-tab/collaborations-tab.component';
 import { PostEventComponent } from './components/post-event/post-event.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { CompetitionPageComponent } from './components/competition-page/competition-page.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     CollaborationsTabComponent,
     PostEventComponent,
     NavbarComponent,
+    CompetitionPageComponent,
   ],
   imports: [
     BrowserModule,

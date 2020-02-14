@@ -7,6 +7,7 @@ import { CompetitionsTabComponent } from './components/competitions-tab/competit
 import { EventsTabComponent } from './components/events-tab/events-tab.component';
 import { CollaborationsTabComponent } from './components/collaborations-tab/collaborations-tab.component';
 import { PostEventComponent } from './components/post-event/post-event.component';
+import { CompetitionPageComponent } from './components/competition-page/competition-page.component';
 
 
 const routes: Routes = [
@@ -14,7 +15,10 @@ const routes: Routes = [
     path : 'login',component:LoginComponentComponent
   },
   {
-    path:'Signup', component:SignupComponent
+    path:'signup', component:SignupComponent
+  },
+  {
+    path:'competition-page', component:CompetitionPageComponent
   },
   {
     path:'User', component : HomepageComponent,children:[
