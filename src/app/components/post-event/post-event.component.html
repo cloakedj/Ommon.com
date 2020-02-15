@@ -1,36 +1,20 @@
-<div class="modal" *ngIf="openState">
-    <div class="modal-background"></div>
-    <div class="modal-content">
-      <div class="container">
-        <div class="column">
-          <div class="columns">
-          <div class="column is-4">
-          <article class="tile notification is-vertical is-info">
-              <figure class="image is-4by3">
-                  <img src="assets/competition.png">
-                </figure>
-            <p class="title is-4">Post Competition</p>
-          </article>
-          </div>
-          <div class="column is-4">
-            <article class="tile notification is-vertical is-danger">
-                <figure class="image is-4by3">
-                    <img src="assets/party.png">
-                  </figure>
-                  <p class="title is-4">Post Event</p>
-            </article>
-            </div>
-            <div class="column is-4">
-              <article class="tile notification is-vertical is-success">
-                  <figure class="image is-4by3">
-                      <img src="assets/collab.png">
-                    </figure>
-                    <p class="title is-4">Post Collaboration</p>
-              </article>
-              </div>
-          </div>
-      </div>
-      </div>
-    </div>
-    <button class="modal-close is-large" aria-label="close" (click)="closeEventModal()"></button>
+<div class="ui four column relaxed centered grid" *ngIf="openState">
+  <div class="close" (click)="openState = false">
+    <span>
+      X
+    </span>
   </div>
+  <div class="stackable row">
+    <div class="column" *ngFor="let type of types">
+      <div class="action-mask">
+        <h2 class="ui center aligned icon header">
+          <a [routerLink]="['/create-event']" [queryParams]="{type : type.type,image: type.image}"><i class="add icon"></i></a>
+        </h2>
+    </div>
+    <div class=" post-container"  [ngStyle]="{background : 'url(' + type.image + ')'}"></div>
+    <div class="ui center aligned header type-text">
+      {{type.type}}
+    </div>
+    </div>
+  </div>
+</div>

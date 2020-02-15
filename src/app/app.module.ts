@@ -15,6 +15,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { CompetitionPageComponent } from './components/competition-page/competition-page.component';
 import { UserTimelineComponent } from './components/user-timeline/user-timeline.component';
 import { AttendNavbarComponent } from './components/attend-navbar/attend-navbar.component';
+import { CreateEventComponent } from './components/create-event/create-event.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { AttendNavbarComponent } from './components/attend-navbar/attend-navbar.
     CompetitionPageComponent,
     UserTimelineComponent,
     AttendNavbarComponent,
+    CreateEventComponent,
   ],
   imports: [
     BrowserModule,

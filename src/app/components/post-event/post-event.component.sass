@@ -1,13 +1,78 @@
-.modal
-    display: block
+@import 'https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap'
 
 
-.modal-content
-    overflow: hidden
-    width : 100%
+.grid
+    position : fixed
+    height : 100%
+    z-index:9999
+    top:0
+    width: 100%
+    margin: 0 !important
+    background : rgba(0,0,0,0.75)
+
+.post-container 
+    background-size: cover !important
+    background-position: center center !important
+    background-repeat: no-repeat !important
+    border-radius: 5px
+    height : 100%
+    margin-right: 2.5%
+    margin-left:2.5%
+    transition: 0.5s all
+    cursor: pointer
+
+.post-container:hover
+     filter: blur(3px)
+
+
+.action-mask
+    position : absolute
+    z-index:9999
+    width:100%
     top: 50%
-    transform: translateY(-50%)
+    transform : translateY(-50%)
 
-.title 
-    color: #fff
-    text-align: center
+.action-mask .ui.header 
+    margin-right: 10% !important
+
+.action-mask:hover + .post-container
+    filter: blur(3px)
+
+.ui.header
+    color:#fff
+    text-transform: uppercase
+.row
+    height:50%
+    top: 50%
+    transform : translateY(-50%) 
+
+.close
+    position: fixed
+    right: 2%
+    top: 1%
+    font-size: 2rem
+    color: black
+    background: #fff
+    font-family: "Permanent Marker", cursive
+    z-index: 99999
+    padding: 0.5%
+    border-radius: 50%
+    cursor: pointer
+
+
+@media (max-width: 500px)
+    .ui.grid 
+        overflow-y:scroll
+    .type-text 
+        position: absolute
+        top: 60%
+        left: 50%
+        transform: translate(-50%,0%) 
+    .row
+        top: 1%
+        bottom: 1%
+        transform: translateY(0%) !important
+        height: 100% !important
+
+    .post-container
+        height:100% 

@@ -9,7 +9,11 @@ import { EventEmitter } from 'protractor';
 export class PostEventComponent implements OnInit {
   @Input() openState : boolean;
   constructor() { }
-
+  types=[
+    {type: 'Competitions', image:'assets/comps.gif'},
+    {type: 'Events', image:'assets/events.gif'},
+    {type: 'Collabs', image:'assets/collabs.gif'},
+  ];
   ngOnInit() {
   }
   closeEventModal(){

@@ -1,0 +1,62 @@
+<div class="ui four column centered grid">
+    <div class="fifteen wide mobile eight wide computer column">
+        <h3 class="ui top attached header center aligned inverted">Add Event Details</h3>
+        <div class="ui raised attached segment">
+          <img class="ui rounded centered medium image" *ngIf="back" src="{{back}}">
+          <div class="ui divider"></div>
+              <div class="ui fluid form">
+                  <form [formGroup]="signUpForm" (ngSubmit)="onSubmit(signUpForm.value)">
+                    <div class="field">
+                      <input placeholder="Title"  formControlName="title" type="text">
+                      <div class="ui pointing red basic label"  *ngIf="title.errors?.required && !title.pristine">
+                            Title Is Required
+                     </div>
+                    </div>
+                    <div class="field">
+                      <textarea placeholder="Description" formControlName="description"></textarea>
+                      <div class="ui pointing red basic label"  *ngIf="description.errors?.required && !description.pristine">
+                            Dsecription Is Required
+                     </div>
+                    </div>
+                    <div class="field">
+                      <input placeholder="Start Date" formControlName="startDate" type="date">
+                      <div class="ui pointing red basic label"  *ngIf="startDate.errors?.required && !startDate.pristine">
+                       Start Date Is Required
+                    </div>
+                    </div>
+                    <div class="field">
+                        <input placeholder="Start Time" formControlName="startTime" type="time">
+                        <div class="ui pointing red basic label"  *ngIf="startTime.errors?.required && !startTime.pristine">
+                          Start time Is Required
+                      </div>
+                      </div>
+                    <div class="field">
+                    <input placeholder="End Date" formControlName="endDate" type="date">
+                    <div class="ui pointing red basic label"  *ngIf="endDate.errors?.required && !endDate.pristine">
+                            End Date Is Required
+                     </div>
+                    </div>
+                    <div class="field">
+                        <input placeholder="End Time" formControlName="endTime" type="time">
+                        <div class="ui pointing red basic label"  *ngIf="endTime.errors?.required && !endTime.pristine">
+                               End Time Is Required
+                         </div>
+                        </div>
+                    <div class="field">
+                    <input placeholder="Cover" formControlName="cover" type="file" (change)="uploadFile($event)">
+                    <!-- <div class="ui pointing red basic label"  *ngIf="signUpForm.controls['confirmPassword'].hasError('NoPassswordMatch') && !confirmPassword.pristine">
+                     Password and Confirm Password Should Match
+                    </div> -->
+                        </div>
+                        <div class="field">
+                          <div class="two ui buttons">
+                            <input class="ui  positive button" [disabled]="signUpForm.pristine || signUpForm.invalid" type="Submit" value="Post Event">
+                            <button class="ui negative button" [disabled]="signUpForm.pristine" (click)="signUpForm.reset();">Reset</button>
+                          </div>
+                        </div>
+                </form>
+                </div>
+          </div>
+        </div>
+  </div>
+
