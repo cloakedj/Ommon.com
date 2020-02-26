@@ -6,7 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./events-tab.component.sass']
 })
 export class EventsTabComponent implements OnInit {
-
+  currEvent : any;
+  status = false;
   constructor() { }
 
   ngOnInit() {
@@ -22,5 +23,12 @@ export class EventsTabComponent implements OnInit {
     {title:'Wordpress Workshop 1.0', image: 'assets/wordpress.png',people: 800},
     {title:'How To Angular ', image: 'assets/angular.png',people: 20000},
   ]
+  openDetailsModal(data){
+    this.currEvent = data;
+    this.status = true;
+  }
+  switchState(state : boolean){
+    this.status = state;
+  }
 
 }

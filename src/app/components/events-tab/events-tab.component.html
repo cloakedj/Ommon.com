@@ -9,11 +9,11 @@
                 <h5 class="ui header left floated">
                     {{event.people}} People Interested
                 </h5>
-                <button class="ui positive right floated right labeled icon button interested">
-                    <i class="heart outline icon"></i>
-                    I'm Interested
+                <button class="ui positive button right floated interested" (click)="openDetailsModal(event)">
+                    View Event
                 </button>
             </div>
         </div>
         </div>
 </div>
+<app-event-modal [Event]="currEvent" [showStatus]="status" (toggle)="switchState($event)"></app-event-modal>

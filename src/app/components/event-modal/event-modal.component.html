@@ -1,0 +1,64 @@
+<div class="ui centered grid container" *ngIf="showStatus">
+     <div class="six wide computer fourteen wide mobile twelve wide tablet column">
+        <div class="ui raise segment">
+            <div class="ui  centered header">
+                {{Event.title}}
+            </div>
+            <div class="ui centered tiny header">
+                <img class="ui avatar image" src="assets/comps.gif">
+                <div class="content">
+                    <a class="header">Dhananjay Singh Kanwar</a>
+                  </div>
+            </div>
+            <div class="ui divider"></div>
+            <div class="ui two column row grid">
+                <div class="ui stretched column">
+                <img class="ui rounded image" src="{{Event.image}}">
+                </div>
+                <div class="column">
+                    <div class="ui relaxed list">
+                        <div class="item">
+                            <i class="user outline icon"></i>
+                            <div class="content">
+                              <a class="header"> {{Event.people}} People Interested</a>
+                            </div>
+                          </div>
+                          <div class="item">
+                            <i class="building outline icon"></i>
+                            <div class="content">
+                              <a class="header">
+                                <b data-tooltip="Open In Map" data-position="bottom center"  data-inverted="">Venue Details</b>
+                              </a>
+                            </div>
+                          </div>
+                          <div class="ui divider"></div>
+                          <div class="item">
+                            <p>
+                                An event description is copy that aims to tell your potential attendees what will be happening at the event, 
+                            </p>
+                          </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ui hidden divider"></div>
+            <div class="extra content">
+                <button class="ui positive right labeled icon button">
+                    <i class="heart outline icon"></i>
+                    I'm Interested
+                </button>
+                <button class="ui black right labeled right floated icon button">
+                    <i class="thumbs up icon"></i>
+                    I'm Attending
+                </button>
+            </div>
+            <div class="ui top attached centered header">
+                <h2 class="ui header">Details</h2>
+            </div>
+            <div class="ui attached segment">
+
+            </div>
+            <div class="ui hidden divider"></div>
+            <button class="ui negative fluid button" (click)="updateParent(false)">Close</button>
+        </div>
+     </div>
+</div>
