@@ -17,6 +17,7 @@ import { UserTimelineComponent } from './components/user-timeline/user-timeline.
 import { AttendNavbarComponent } from './components/attend-navbar/attend-navbar.component';
 import { CreateEventComponent } from './components/create-event/create-event.component';
 import { EventModalComponent } from './components/event-modal/event-modal.component';
+import { TagsComponent } from './components/tags/tags.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { EventModalComponent } from './components/event-modal/event-modal.compon
     AttendNavbarComponent,
     CreateEventComponent,
     EventModalComponent,
+    TagsComponent,
   ],
   imports: [
     BrowserModule,

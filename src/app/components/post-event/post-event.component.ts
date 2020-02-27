@@ -1,5 +1,4 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
-import { EventEmitter } from 'protractor';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-post-event',
@@ -8,6 +7,7 @@ import { EventEmitter } from 'protractor';
 })
 export class PostEventComponent implements OnInit {
   @Input() openState : boolean;
+  @Output() closeState = new EventEmitter();
   constructor() { }
   types=[
     {type: 'Competitions', image:'assets/comps.gif'},
@@ -16,7 +16,8 @@ export class PostEventComponent implements OnInit {
   ];
   ngOnInit() {
   }
-  closeEventModal(){
+  closeEventsModal(){
     this.openState = false;
+    this.closeState.emit("false");
   }
 }

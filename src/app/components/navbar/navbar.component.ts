@@ -11,7 +11,7 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() {
   }
-  turnOffAddEvent(modalstate){
+  turnOffAddEvent(modalstate : boolean){
     this.modalOpenState = modalstate;
   }
 

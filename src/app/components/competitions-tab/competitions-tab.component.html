@@ -89,7 +89,9 @@
                 <img src="{{cat.image}}">
               </div>
               <div class="content">
-                <a class="ui centered header">{{cat.title}}</a>
+                <a class="ui centered header" routerLink="/tags" 
+                [queryParams]="{tagCategory: cat.title,tagBack : cat.image}"
+                routerLinkActive="active">{{cat.title}}</a>
               </div>
             </div>
             <div class="ui hidden divider"></div>

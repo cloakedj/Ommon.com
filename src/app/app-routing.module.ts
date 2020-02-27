@@ -9,6 +9,7 @@ import { CollaborationsTabComponent } from './components/collaborations-tab/coll
 import { CompetitionPageComponent } from './components/competition-page/competition-page.component';
 import { CreateEventComponent } from './components/create-event/create-event.component';
 import { UserTimelineComponent } from './components/user-timeline/user-timeline.component';
+import { TagsComponent } from './components/tags/tags.component';
 
 
 const routes: Routes = [
@@ -26,6 +27,9 @@ const routes: Routes = [
   },
   {
     path : 'timeline', component : UserTimelineComponent
+  },
+  {
+    path : 'tags', component: TagsComponent
   },
   {
     path:'User', component : HomepageComponent,children:[
