@@ -11,7 +11,7 @@
                   </div>
             </div>
             <div class="ui divider"></div>
-            <div class="ui two column row grid">
+            <div class="ui stackable two column row grid">
                 <div class="ui stretched column">
                 <img class="ui rounded image" src="{{Event.image}}">
                 </div>
@@ -41,16 +41,23 @@
                 </div>
             </div>
             <div class="ui hidden divider"></div>
-            <div class="extra content">
+            <div class="ui computer only row grid container">
                 <button class="ui positive right labeled icon button">
                     <i class="heart outline icon"></i>
                     I'm Interested
                 </button>
-                <button class="ui black right labeled right floated icon button">
+                <button class="ui black right labeled icon button right floated left aligned six wide column">
                     <i class="thumbs up icon"></i>
                     I'm Attending
                 </button>
             </div>
+            <div class="ui mobile only row grid container">
+              <div class="ui buttons">
+                <button class="ui black button">Interested</button>
+                <div class="or"></div>
+                <button class="ui positive button">Attending</button>
+              </div>
+          </div>
             <!-- <div class="ui top attached centered header">
                 <h2 class="ui header">Details</h2>
             </div>
@@ -69,7 +76,7 @@
               </a>
             </div>
             <div class="ui segment">
-              <p></p>
+              <router-outlet name="eventRouter"></router-outlet>
             </div>
             <div class="ui hidden divider"></div>
             <button class="ui negative fluid button" (click)="updateParent(false)">Close</button>

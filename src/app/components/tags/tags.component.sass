@@ -1,4 +1,5 @@
 @import 'https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap'
+@import '../events-tab/events-tab.component'
 .sixteen.wide.column
     min-height:45vh
     background-size: cover !important
@@ -19,3 +20,10 @@
     color: #fff
     font-size: 5rem
     font-family: 'Permanent Marker', cursive
+
+
+@media (max-width: 512px)
+    .sixteen.wide.column
+        min-height: 30vh
+    .tag
+        font-size: 3rem
