@@ -33,11 +33,12 @@
                 </h6>
             </div>
             <div class="hero-body">
+              <form [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)">
                 <div class="box is-login-form">
                     <div class="field">
                         <label class="label">Username</label>
-                        <p class="control has-icons-left has-icons-right">
-                          <input class="input" type="email" placeholder="Email">
+                        <p class="control has-icons-left has-icons-right"> 
+                          <input class="input" type="text" placeholder="Username" formControlName="username">
                           <span class="icon is-small is-left">
                             <i class="fas fa-envelope"></i>
                           </span>
@@ -46,7 +47,7 @@
                       <div class="field">
                         <label class="label">Password</label>
                         <p class="control has-icons-left">
-                          <input class="input" type="password" placeholder="Password">
+                          <input class="input" type="password" placeholder="Password" formControlName="password">
                           <span class="icon is-small is-left">
                             <i class="fas fa-lock"></i>
                           </span>
@@ -54,7 +55,7 @@
                       </div>
                       <div class="level">
                       <div class="field level-left">
-                        <button class="button is-success">Login</button>
+                        <button class="button is-success" [disabled]="loginForm.pristine || loginForm.invalid">Login</button>
                       </div>
                     </div>
                       <div class="field has-text-centered">
@@ -80,6 +81,7 @@
                         </h6>
                       </div>
                 </div>
+              </form>
             </div>
             <div class="hero-foot has-text-centered">
                     Organize, Participate & Collaborate.

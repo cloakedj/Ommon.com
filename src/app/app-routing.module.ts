@@ -10,6 +10,7 @@ import { CompetitionPageComponent } from './components/competition-page/competit
 import { CreateEventComponent } from './components/create-event/create-event.component';
 import { UserTimelineComponent } from './components/user-timeline/user-timeline.component';
 import { TagsComponent } from './components/tags/tags.component';
+import { AddCompComponent } from './components/add-comp/add-comp.component';
 
 
 const routes: Routes = [
@@ -24,6 +25,9 @@ const routes: Routes = [
   },
   {
     path : 'create-event', component : CreateEventComponent
+  },
+  {
+    path : 'create-competition', component : AddCompComponent
   },
   {
     path : 'timeline', component : UserTimelineComponent

@@ -5,15 +5,34 @@
     </span>
   </div>
   <div class="stackable row">
-    <div class="column" *ngFor="let type of types">
+    <div class="column">
       <div class="action-mask">
         <h2 class="ui center aligned icon header">
-          <a [routerLink]="['/create-event']" [queryParams]="{type : type.type,image: type.image}"><i class="add icon"></i></a>
+          <a [routerLink]="['/create-competition']"><i class="add icon" (click)="closeEventsModal()"></i></a>
         </h2>
     </div>
-    <div class=" post-container"  [ngStyle]="{background : 'url(' + type.image + ')'}"></div>
+    <div class=" post-container"  [ngStyle]="{background : 'url(assets/comps.gif)'}"></div>
     <div class="ui center aligned header type-text">
-      {{type.type}}
+    </div>
+    </div>
+    <div class="column">
+      <div class="action-mask">
+        <h2 class="ui center aligned icon header">
+          <a [routerLink]="['/create-event']"><i class="add icon" (click)="closeEventsModal()"></i></a>
+        </h2>
+    </div>
+    <div class=" post-container"  [ngStyle]="{background : 'url(assets/events.gif)'}"></div>
+    <div class="ui center aligned header type-text">
+    </div>
+    </div>
+    <div class="column">
+      <div class="action-mask">
+        <h2 class="ui center aligned icon header">
+          <a [routerLink]="['/create-collab']"><i class="add icon" (click)="closeEventsModal()"></i></a>
+        </h2>
+    </div>
+    <div class=" post-container"  [ngStyle]="{background : 'url(assets/collabs.gif)'}"></div>
+    <div class="ui center aligned header type-text">
     </div>
     </div>
   </div>

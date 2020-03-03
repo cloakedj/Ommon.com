@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, Input } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ThrowStmt } from '@angular/compiler';
@@ -11,25 +11,23 @@ import { ThrowStmt } from '@angular/compiler';
 export class CreateEventComponent implements OnInit {
   image : any;
   eventData = new FormData();
-  signUpForm: FormGroup = this.formBuilder.group({
-    title:['',Validators.required],
-    description:['',Validators.required],
-    startDate:['',[
+  @Input() timepicker : any;
+  addEvent: FormGroup = this.formBuilder.group({
+    event:['',Validators.required],
+    info:['',Validators.required],
+    date:['',[
     Validators.required,
     ]],
-    startTime:['',Validators.required],
-    endDate:['',Validators.required],
-    endTime:['',Validators.required],
-    cover: ['',Validators.required]
+    time:['',Validators.required],
+    status:['',Validators.required],
+    venue:['',Validators.required],
+    tags: ['',Validators.required]
   });
   back : string;
   constructor(private formBuilder: FormBuilder,
     private router : Router,
     private aroute: ActivatedRoute,
     private cd : ChangeDetectorRef) {
-      this.aroute.queryParams.subscribe(params =>{
-        this.back = params['image'];
-  })
   }
   onSubmit(data){
     data.cover = this.image;
@@ -50,10 +48,11 @@ export class CreateEventComponent implements OnInit {
 
   ngOnInit() {
   }
-  get title(){ return this.signUpForm.get('title');}
-  get description(){ return this.signUpForm.get('description');}
-  get startDate(){ return this.signUpForm.get('startDate');}
-  get startTime(){ return this.signUpForm.get("startTime");}
-  get endDate(){ return this.signUpForm.get("endDate");}
-  get endTime(){ return this.signUpForm.get("endTime");}
+  get event(){ return this.addEvent.get('event');}
+  get info(){ return this.addEvent.get('info');}
+  get date(){ return this.addEvent.get('date');}
+  get time(){ return this.addEvent.get("time");}
+  get status(){ return this.addEvent.get("status");}
+  get venue(){ return this.addEvent.get("venue");}
+  get tags(){ return this.addEvent.get("tags");}
 }

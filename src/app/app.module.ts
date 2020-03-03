@@ -18,6 +18,16 @@ import { AttendNavbarComponent } from './components/attend-navbar/attend-navbar.
 import { CreateEventComponent } from './components/create-event/create-event.component';
 import { EventModalComponent } from './components/event-modal/event-modal.component';
 import { TagsComponent } from './components/tags/tags.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
+import { AddCompComponent } from './components/add-comp/add-comp.component';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -36,11 +46,21 @@ import { TagsComponent } from './components/tags/tags.component';
     CreateEventComponent,
     EventModalComponent,
     TagsComponent,
+    AddCompComponent,
   ],
   imports: [
     BrowserModule,
+    MatRadioModule,
+    HttpClientModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatChipsModule,
+    MatIconModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
+    ToastrModule.forRoot(),
+    NgxMaterialTimepickerModule 
   ],
   providers: [],
   bootstrap: [AppComponent]

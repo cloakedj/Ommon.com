@@ -10,22 +10,22 @@
 <div class="ui divider"></div>
 <div class="ui stackable grid eventsContainer">
     <div class="fourteen wide column">
-    <div class="ui centered stackable link cards">
-    <div class="ui card" *ngFor="let pl of [0,1,2,3,4,5]">
+    <div class="ui centered stackable link cards" *ngIf="competitions">
+    <div class="ui card" *ngFor="let comp of competitions">
         <div class="content">
-          <div class="ui sub header">Fri, 13th February, 2020 @ 5:30 PM</div>
+          <div class="ui sub header">{{comp.date}} @ {{comp.time}}</div>
         </div>
         <div class="content">
-          <h2 class="ui header">Workshop On Evils Of Artificial Intelligence</h2>
-          <a class="ui orange label">Technology</a>
+          <h2 class="ui header">{{comp.comp}}</h2>
+          <a class="ui orange label">{{comp.status}}</a>
           <div class="ui small feed">
             <div class="event">
               <div class="content">
                 <div class="summary">
-                   <h4 class="ui header">Christ University Bangalore</h4>
+                   <h4 class="ui header">{{comp.venue}}</h4>
                 </div>
                 <div class="ui sub header">
-                    <i class="map marker alternate icon"></i> Christ Main Campus
+                    <i class="map marker alternate icon"></i> {{comp.organiser}}
                 </div>
                 <div class="ui sub header">300 Attendees</div>
               </div>

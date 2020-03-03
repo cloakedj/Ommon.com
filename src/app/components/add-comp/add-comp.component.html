@@ -1,0 +1,96 @@
+<div class="ui four column centered grid">
+    <div class="fifteen wide mobile eight wide computer column">
+        <h3 class="ui top attached header center aligned inverted">Add Competion Details</h3>
+        <div class="ui raised attached segment">
+          <img class="ui rounded centered small image" src="assets/comps.gif">
+          <div class="ui divider"></div>
+              <div class="ui fluid form">
+                  <form [formGroup]="addComp" (ngSubmit)="onSubmit()">
+                    <div class="field">
+                        <label>Competition Title</label>
+                      <input formControlName="comp" type="text">
+                      <div class="ui pointing red basic label"  *ngIf="comp.errors?.required && !comp.pristine">
+                            comp Is Required
+                     </div>
+                    </div>
+                    <div class="field">
+                        <label>Competition Descritption</label>
+                      <textarea formControlName="info"></textarea>
+                      <div class="ui pointing red basic label"  *ngIf="info.errors?.required && !info.pristine">
+                            Dsecription Is Required
+                     </div>
+                    </div>
+                    <div class="field">
+                        <label>Competition Date</label>
+                        <input matInput [matDatepicker]="datepicker"
+                               formControlName="date">
+                        <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+                        <mat-datepicker #datepicker></mat-datepicker>
+                      <div class="ui pointing red basic label"  *ngIf="date.errors?.required && !date.pristine">
+                       Date Is Required
+                    </div>
+                    </div>
+                    <div class="field">
+                        <label>Competition Time</label>
+                      <input [ngxTimepicker]="timepicker" formControlName="time">
+                      <ngx-material-timepicker #timepicker></ngx-material-timepicker>
+                        <div class="ui pointing red basic label"  *ngIf="time.errors?.required && !time.pristine">
+                          Time Is Required
+                      </div>
+                      </div>
+                    <div class="field">
+                    <label>Competition Status</label>
+                    <mat-radio-group aria-label="Select an option" formControlName="status">
+                        <mat-radio-button value="active" name="comp-status">
+                            <a class="ui red horizontal label">Active</a>
+                        </mat-radio-button>
+                        <mat-radio-button value="inactive" name="comp-status">
+                            <a class="ui black horizontal label">Inactive</a>
+                        </mat-radio-button>
+                        <mat-radio-button value="petition" name="comp-status">
+                            <a class="ui yellow horizontal label">Petition</a>
+                        </mat-radio-button>
+                      </mat-radio-group>
+                    <div class="ui pointing red basic label"  *ngIf="status.errors?.invalid">
+                            Select The Event Status
+                     </div>
+                    </div>
+                    <div class="field">
+                        <label>Competition Venue</label>
+                        <input formControlName="venue" type="text">
+                        <div class="ui pointing red basic label"  *ngIf="venue.errors?.required && !venue.pristine">
+                               Venue Is Required
+                         </div>
+                        </div>
+                    <div class="field">
+                    <!-- <input placeholder="Cover" formControlName="cover" type="file" (change)="uploadFile($comp)"> -->
+                    <!-- <div class="ui pointing red basic label"  *ngIf="addComp.controls['confirmPassword'].hasError('NoPassswordMatch') && !confirmPassword.pristine">
+                     Password and Confirm Password Should Match
+                    </div> -->
+                    <label>Add Tags</label>
+                    <mat-chip-list #chipList aria-label="Add Tags">
+                        <input class="tagInput"
+                               [matChipInputFor]="chipList"
+                               [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                               [matChipInputAddOnBlur]="addOnBlur"
+                               (matChipInputTokenEnd)="add($event)"
+                               formControlName="tags">
+                               <mat-chip *ngFor="let tag of tagsArr" [selectable]="selectable"
+                               [removable]="removable" (removed)="remove(tag)">
+                        {{tag.name}}
+                        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                      </mat-chip>
+                      </mat-chip-list>
+                        </div>
+                        <div class="field">
+                          <div class="two ui buttons">
+                            <input class="ui  positive button" [disabled]="addComp.pristine || addComp.invalid" type="Submit" value="Post Event">
+                            <button class="ui negative button" [disabled]="addComp.pristine" (click)="addComp.reset();">Reset</button>
+                          </div>
+                        </div>
+                </form>
+                </div>
+          </div>
+        </div>
+  </div>
+

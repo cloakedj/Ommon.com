@@ -2,56 +2,59 @@
     <div class="fifteen wide mobile eight wide computer column">
         <h3 class="ui top attached header center aligned inverted">Add Event Details</h3>
         <div class="ui raised attached segment">
-          <img class="ui rounded centered medium image" *ngIf="back" src="{{back}}">
+          <img class="ui rounded centered medium image" src="assets/events.gif">
           <div class="ui divider"></div>
               <div class="ui fluid form">
-                  <form [formGroup]="signUpForm" (ngSubmit)="onSubmit(signUpForm.value)">
+                  <form [formGroup]="addEvent" (ngSubmit)="onSubmit(addEvent.value)">
                     <div class="field">
-                      <input placeholder="Title"  formControlName="title" type="text">
-                      <div class="ui pointing red basic label"  *ngIf="title.errors?.required && !title.pristine">
+                      <input placeholder="Title"  formControlName="event" type="text">
+                      <div class="ui pointing red basic label"  *ngIf="event.errors?.required && !event.pristine">
                             Title Is Required
                      </div>
                     </div>
                     <div class="field">
-                      <textarea placeholder="Description" formControlName="description"></textarea>
-                      <div class="ui pointing red basic label"  *ngIf="description.errors?.required && !description.pristine">
+                      <textarea placeholder="Description" formControlName="info"></textarea>
+                      <div class="ui pointing red basic label"  *ngIf="info.errors?.required && !info.pristine">
                             Dsecription Is Required
                      </div>
                     </div>
                     <div class="field">
-                      <input placeholder="Start Date" formControlName="startDate" type="date">
-                      <div class="ui pointing red basic label"  *ngIf="startDate.errors?.required && !startDate.pristine">
-                       Start Date Is Required
+                      <input placeholder="Start Date" formControlName="date" type="date">
+                      <div class="ui pointing red basic label"  *ngIf="date.errors?.required && !date.pristine">
+                       Date Is Required
                     </div>
                     </div>
                     <div class="field">
-                        <input placeholder="Start Time" formControlName="startTime" type="time">
-                        <div class="ui pointing red basic label"  *ngIf="startTime.errors?.required && !startTime.pristine">
-                          Start time Is Required
+                      <input [ngxTimepicker]="timepicker" formControlName="time">
+                      <ngx-material-timepicker #timepicker></ngx-material-timepicker>
+                        <div class="ui pointing red basic label"  *ngIf="time.errors?.required && !time.pristine">
+                          Time Is Required
                       </div>
                       </div>
                     <div class="field">
-                    <input placeholder="End Date" formControlName="endDate" type="date">
-                    <div class="ui pointing red basic label"  *ngIf="endDate.errors?.required && !endDate.pristine">
-                            End Date Is Required
+                    <input type="radio" formControlName="status">Active
+                    <input type="radio" formControlName="status">Inactive
+                    <input type="radio" formControlName="status">Petition
+                    <div class="ui pointing red basic label"  *ngIf="status.errors?.required && !status.pristine">
+                            Select The Event Status
                      </div>
                     </div>
                     <div class="field">
-                        <input placeholder="End Time" formControlName="endTime" type="time">
-                        <div class="ui pointing red basic label"  *ngIf="endTime.errors?.required && !endTime.pristine">
-                               End Time Is Required
+                        <input placeholder="End Time" formControlName="venue" type="text">
+                        <div class="ui pointing red basic label"  *ngIf="venue.errors?.required && !venue.pristine">
+                               Venue Is Required
                          </div>
                         </div>
                     <div class="field">
-                    <input placeholder="Cover" formControlName="cover" type="file" (change)="uploadFile($event)">
-                    <!-- <div class="ui pointing red basic label"  *ngIf="signUpForm.controls['confirmPassword'].hasError('NoPassswordMatch') && !confirmPassword.pristine">
+                    <!-- <input placeholder="Cover" formControlName="cover" type="file" (change)="uploadFile($event)"> -->
+                    <!-- <div class="ui pointing red basic label"  *ngIf="addEvent.controls['confirmPassword'].hasError('NoPassswordMatch') && !confirmPassword.pristine">
                      Password and Confirm Password Should Match
                     </div> -->
                         </div>
                         <div class="field">
                           <div class="two ui buttons">
-                            <input class="ui  positive button" [disabled]="signUpForm.pristine || signUpForm.invalid" type="Submit" value="Post Event">
-                            <button class="ui negative button" [disabled]="signUpForm.pristine" (click)="signUpForm.reset();">Reset</button>
+                            <input class="ui  positive button" [disabled]="addEvent.pristine || addEvent.invalid" type="Submit" value="Post Event">
+                            <button class="ui negative button" [disabled]="addEvent.pristine" (click)="addEvent.reset();">Reset</button>
                           </div>
                         </div>
                 </form>
