@@ -24,7 +24,7 @@
                         <div class="item">
                             <i class="user outline icon"></i>
                             <div class="content">
-                              <a class="header"> 200 People Interested</a>
+                              <a class="header"> {{Evt.attenders.length}} People Interested</a>
                             </div>
                           </div>
                           <div class="item">
@@ -46,11 +46,12 @@
             </div>
             <div class="ui hidden divider"></div>
             <div class="ui computer only row grid container">
-                <button class="ui positive right labeled icon button">
+                <!-- <button class="ui positive right labeled icon button">
                     <i class="heart outline icon"></i>
                     I'm Interested
-                </button>
-                <button class="ui black right labeled icon button right floated left aligned six wide column">
+                </button> -->
+                <button (click)="attend(Evt._id)" *ngIf="!Evt.attenders.includes(userId) else attending"
+                class="ui black right labeled icon button right floated left aligned six wide column">
                     <i class="thumbs up icon"></i>
                     I'm Attending
                 </button>
@@ -73,3 +74,8 @@
         </div>
      </div>
 </div>
+<ng-template #attending>
+  <a class="ui red right corner label">
+    <i class="check icon"></i>
+  </a>
+</ng-template>

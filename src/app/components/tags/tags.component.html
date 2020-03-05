@@ -7,18 +7,21 @@
         </div>
     </div>
 </div>
-<div class="ui  three column  stackable grid container">
-    <div class="column" *ngFor="let event of events">
-        <div class="col-content" [ngStyle]="{background : 'url(' + event.image +')'}">
+<div class="ui  three column  stackable grid container" *ngIf="competitions">
+    <div class="column" *ngFor="let comp of competitions">
+        <a class="ui red right corner label" *ngIf="comp.participants.includes(userId)">
+            <i class="check icon"></i>
+          </a>
+        <div class="col-content" [ngStyle]="{background : 'url(' + comp.cover +')'}">
         <h2 class="ui header eventTitle">
-            {{event.title}}
+            {{comp.comp}}
         </h2>
         <div class="ui divider"></div>
         <div class="extra content">
             <h5 class="ui header left floated">
-                {{event.people}} Attendees
+                {{comp.participants.length}} Attendees
             </h5>
-            <a routerLink="/competition-page" routerLinkActive="active">
+            <a [routerLink]="['/competition-page',comp._id]" routerLinkActive="active">
             <button  class="ui positive button right floated interested">
                 View Competition
             </button>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-collaborations-tab',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CollaborationsTabComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private toastr : ToastrService
+  ) { }
 
   ngOnInit() {
+  }
+  showNotif(){
+    this.toastr.success("You Successfully Join A Collaboration");
   }
 
 }

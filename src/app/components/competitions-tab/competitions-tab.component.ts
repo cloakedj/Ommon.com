@@ -38,10 +38,5 @@ export class CompetitionsTabComponent implements OnInit {
   }
   categories =[
     {title : 'Technology', image: 'assets/tech.jpg'},
-    {title : 'Sports & Fitness', image: 'assets/sports.jpg'},
-    {title : 'Coding', image: 'assets/coding.png'},
-    {title : 'Technology', image: 'assets/tech.jpg'},
-    {title : 'Sports & Fitness', image: 'assets/sports.jpg'},
-    {title : 'Coding', image: 'assets/coding.png'},
   ]
 }

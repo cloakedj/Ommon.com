@@ -1,5 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Observer } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
+import { ApiService } from 'src/app/services/api-service/api.service';
 
 @Component({
   selector: 'app-tags',
@@ -9,24 +12,29 @@ import { ActivatedRoute } from '@angular/router';
 export class TagsComponent implements OnInit {
   tagBack : any;
   tagCat : any;
+  compsObs$ : Observer<any>;
+  userId : string;
+  competitions : [];
   constructor(
-    private aroute : ActivatedRoute
+    private aroute : ActivatedRoute,
+    private toastr : ToastrService,
+    private api : ApiService
   ) { }
-  events = [
-    {title:'Discussion on evils of AI', image: 'assets/tech.jpg',people: 200},
-    {title:'Benefits of excercising daily', image: 'assets/sports.jpg',people: 100},
-    {title:'Hot reloading and web  ', image: 'assets/coding.png',people: 1000},
-    {title:'Party @ Avon ', image: 'assets/party.jfif',people: 300},
-    {title:'Python Programming 101 ', image: 'assets/python.png',people: 100},
-    {title:'Cricket tournament ', image: 'assets/cricket.jpg',people: 600},
-  ]
-  open
   ngOnInit() {
   this.aroute.queryParams.subscribe(params =>{
       this.tagBack = params['tagBack'];
       this.tagCat = params['tagCategory'] || 'assets/comps.gif';
   });
-
+  this.userId = localStorage.getItem("user");
+  this.compsObs$ = {
+    next : data => {
+      console.log("Fetched Competitons",data);
+      this.competitions = data["comps"];
+    },
+    error : err => this.toastr.error(err),
+    complete : () => this.toastr.success("Request To Fetch Competions Completed") 
+  }
+  this.api.getCompetitionsForUser().subscribe(this.compsObs$);
   }
 
 }

@@ -7,7 +7,7 @@
             <div class="ui divider"></div>
             <div class="extra content">
                 <h5 class="ui header left floated">
-                    100 People Interested
+                    {{event.attenders.length}} People Interested
                 </h5>
                 <button class="ui positive button right floated interested" (click)="[openDetailsModal(event),modal.getEventData(event._id)]">
                     View Event

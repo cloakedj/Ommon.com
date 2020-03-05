@@ -1,13 +1,13 @@
 <div class="ui grid container">
     <div class="ui centered stackable link cards">
-        <div class="card" *ngFor="let pl of [0,1,2,3,4,5,6,7,8]">
+        <div class="card">
           <div class="content">
             <img class="right floated ui avatar image" src="assets/coding.png">
             <div class="header">
-              Post Title
+              Hackathon Partnership
             </div>
             <div class="meta">
-              Posted By
+              Posted By Dhananjay
             </div>
             <div class="description">
                 local developers with similar interests in technology. 
@@ -17,7 +17,7 @@
           </div>
           <div class="extra content">
             <div class="ui two buttons">
-              <div class="ui basic green button">Approve</div>
+              <div class="ui basic green button" (click)="showNotif()">Approve</div>
               <div class="ui basic red button">Decline</div>
             </div>
           </div>

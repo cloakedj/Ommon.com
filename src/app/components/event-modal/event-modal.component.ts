@@ -13,6 +13,7 @@ export class EventModalComponent implements OnInit {
   @Input() showStatus : boolean;
   @Output() toggle  = new EventEmitter<boolean>();
   organizer : any;
+  userId = localStorage.getItem("user");
   eventObs$ : Observer<any>;
   constructor(private api : ApiService,
     private toastr : ToastrService) { }
@@ -30,6 +31,13 @@ export class EventModalComponent implements OnInit {
   }
   updateParent(state : boolean){
     this.toggle.emit(state);
+  }
+  attend(id){
+    this.api.attendEvent(id).subscribe(
+      data => this.toastr.success("Successfully Enrolled In The Event"),
+      error => this.toastr.error(error),
+      () => this.toastr.info("Request to attend event completed")
+    )
   }
 
 }

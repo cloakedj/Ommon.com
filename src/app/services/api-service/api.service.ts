@@ -109,4 +109,18 @@ export class ApiService {
       catchError(this.handleError)
     )
   }
+  //Log Out
+  logUserOut(){
+    return this.http.get(`${this.API_URL}/users/logout`)
+    .pipe(
+      catchError(this.handleError)
+    )
+  }
+  //Attend events
+  attendEvent(id : string){
+    return this.http.get(`${this.API_URL}/events/attend/${id}`)
+    .pipe(
+      catchError(this.handleError)
+    )
+  }
 }
