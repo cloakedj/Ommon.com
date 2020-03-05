@@ -1,29 +1,29 @@
-<div class="ui parent container">
+<div class="ui parent container" *ngIf="compDetails">
 <div class="ui stackable grid container">
     <div class="nine wide column">
-        <img class="ui big rounded image" src="signup.jpg">
+        <img class="ui big rounded image" src="{{compDetails.cover}}">
     </div>
     <div class="seven wide column">
         <h1 class="ui header">
-            Google Developer Group
+           {{compDetails.comp}}
         </h1>
-        <a class="ui orange label">Technology</a>
-        <a class="ui teal label">Pending</a>
+        <a class="ui orange label" *ngFor="let tag of compDetails.tags">{{tag}}</a>
+        <a class="ui teal label">{{compDetails.status}}</a>
         <div class="ui divider"></div>
         <h4 class="ui header">
-            <i class="map marker alternate icon"></i> Bangalore, India
+            <i class="map marker alternate icon"></i>{{compDetails.venue}}
         </h4>
         <h4 class="ui header">
-            <i class="user circle icon"></i> Organized by Christ University
+            <i class="user circle icon"></i> Organized by {{organiser.name}}
         </h4>
         <h4 class="ui header">
-            <i class="smile icon"></i> 500 Attendees
+            <i class="smile icon"></i> {{compDetails.participants.length}} Attendees
         </h4>
         <h4 class="ui header">
-            <i class="calendar icon"></i> 15th Feb, Friday
+            <i class="calendar icon"></i> {{compDetails.date | date}}
         </h4>
         <h4 class="ui header">
-            <i class="clock icon"></i> 5:30 PM
+            <i class="clock icon"></i>{{compDetails.time}}
         </h4>
     </div>
 </div>
@@ -32,16 +32,7 @@
     <div class="nine wide column">
         <h2 class="ui header">Event Details</h2>
         <div class="content">
-            Google Developer Group (GDG)
-            When you join a Google Developer Group, 
-            you’ll have the opportunity to meet local 
-            developers with similar interests in technology. 
-            A GDG meetup event includes talks on a wide range 
-            of technical topics where you can learn new skills 
-            through hands-on workshops. The community prides 
-            itself on being an inclusive environment where 
-            everyone and anyone interested in tech - from beginner
-             developers to experienced professionals - all are welcome to join.
+            {{compDetails.info}}
         </div>
     </div>
     <div class="seven wide column">
@@ -49,10 +40,10 @@
             Organizer
         </h3>
         <div class="row">
-            <img class="ui tiny rounded image" src="assets/loginback.jpg">
+            <img class="ui tiny rounded image" src="{{organiser.logo}}">
         </div>
         <h3 class="ui header">
-            Attendees (500)
+            Attendees ({{compDetails.participants.length}})
         </h3>
         <div class="row">
             <img class="ui avatar image" src="assets/loginback.jpg">
@@ -67,6 +58,6 @@
     </div>
 </div>
 </div>
-<app-attend-navbar></app-attend-navbar>
+<app-attend-navbar [date]="compDetails.date" [time]="compDetails.time" [title]="compDetails.comp" [participants]="compDetails.participants"></app-attend-navbar>
 
 

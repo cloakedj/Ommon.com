@@ -2,40 +2,44 @@
      <div class="six wide computer fourteen wide mobile twelve wide tablet column">
         <div class="ui raise segment">
             <div class="ui  centered header">
-                {{Event.title}}
+                {{Evt.event}}
             </div>
-            <div class="ui centered tiny header">
-                <img class="ui avatar image" src="assets/comps.gif">
+            <div class="ui centered medium header">
+                <img class="ui rounded medium image" *ngIf="organizer" src="{{organizer.logo}}">
                 <div class="content">
-                    <a class="header">Dhananjay Singh Kanwar</a>
+                    <a class="header" *ngIf="organizer">{{organizer.name}}r</a>
                   </div>
+            </div>
+            <div class="ui centered header">
+              <a class="ui black label" *ngFor="let tag of Evt.tags">{{tag}}</a>
+              <a class="ui orange label">{{Evt.status}}</a>
             </div>
             <div class="ui divider"></div>
             <div class="ui stackable two column row grid">
                 <div class="ui stretched column">
-                <img class="ui rounded image" src="{{Event.image}}">
+                <img class="ui rounded image" src="{{Evt.cover}}">
                 </div>
                 <div class="column">
                     <div class="ui relaxed list">
                         <div class="item">
                             <i class="user outline icon"></i>
                             <div class="content">
-                              <a class="header"> {{Event.people}} People Interested</a>
+                              <a class="header"> 200 People Interested</a>
                             </div>
                           </div>
                           <div class="item">
                             <i class="building outline icon"></i>
                             <div class="content">
                               <a class="header">
-                                <b data-tooltip="Open In Map" data-position="bottom center"  data-inverted="">Venue Details</b>
+                                <b data-tooltip="Open In Map" data-position="bottom center"  data-inverted="">{{Evt.venue}}</b>
                               </a>
                             </div>
                           </div>
                           <div class="ui divider"></div>
                           <div class="item">
                             <p>
-                                An event description is copy that aims to tell your potential attendees what will be happening at the event, 
-                            </p>
+                              {{Evt.info | shrinkText : 90}}
+                           </p>
                           </div>
                     </div>
                 </div>
@@ -64,20 +68,6 @@
             <div class="ui attached segment">
 
             </div> -->
-            <div class="ui secondary pointing menu">
-              <a class="active item">
-                Home
-              </a>
-              <a class="item">
-                Messages
-              </a>
-              <a class="item">
-                Friends
-              </a>
-            </div>
-            <div class="ui segment">
-              <router-outlet name="eventRouter"></router-outlet>
-            </div>
             <div class="ui hidden divider"></div>
             <button class="ui negative fluid button" (click)="updateParent(false)">Close</button>
         </div>

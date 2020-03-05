@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from 'src/app/services/api-service/api.service';
+import { ToastrService } from 'ngx-toastr';
+import { Observer } from 'rxjs';
 
 @Component({
   selector: 'app-events-tab',
@@ -7,22 +10,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EventsTabComponent implements OnInit {
   currEvent : any;
+  eventsObs$ : Observer<any>;
   status = false;
-  constructor() { }
+  events : [];
+  constructor(
+    private api : ApiService,
+    private toastr : ToastrService
+  ) { }
 
   ngOnInit() {
+    this.eventsObs$ = {
+      next : data => {
+        console.log("Fetched Competitons",data);
+        this.events = data["events"];
+      },
+      error : err => this.toastr.error(err),
+      complete : () => this.toastr.success("Request To Fetch Competions Completed") 
+    }
+    this.api.getEventsForUser().subscribe(this.eventsObs$);
   }
-  events = [
-    {title:'Discussion on evils of AI', image: 'assets/tech.jpg',people: 200},
-    {title:'Benefits of excercising daily', image: 'assets/sports.jpg',people: 100},
-    {title:'Hot reloading and web  ', image: 'assets/coding.png',people: 1000},
-    {title:'Party @ Avon ', image: 'assets/party.jfif',people: 300},
-    {title:'Python Programming 101 ', image: 'assets/python.png',people: 100},
-    {title:'Cricket tournament ', image: 'assets/cricket.jpg',people: 600},
-    {title:'Nav Concert @ bengaluru', image: 'assets/nav.jpg',people: 10000},
-    {title:'Wordpress Workshop 1.0', image: 'assets/wordpress.png',people: 800},
-    {title:'How To Angular ', image: 'assets/angular.png',people: 20000},
-  ]
   openDetailsModal(data){
     this.currEvent = data;
     this.status = true;

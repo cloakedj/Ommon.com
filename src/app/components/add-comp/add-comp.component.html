@@ -62,11 +62,11 @@
                                Venue Is Required
                          </div>
                         </div>
+                        <div class="field">
+                          <label>Competition Cover</label>
+                          <input placeholder="Cover" type="file" (change)="uploadFile($event)">
+                        </div>
                     <div class="field">
-                    <!-- <input placeholder="Cover" formControlName="cover" type="file" (change)="uploadFile($comp)"> -->
-                    <!-- <div class="ui pointing red basic label"  *ngIf="addComp.controls['confirmPassword'].hasError('NoPassswordMatch') && !confirmPassword.pristine">
-                     Password and Confirm Password Should Match
-                    </div> -->
                     <label>Add Tags</label>
                     <mat-chip-list #chipList aria-label="Add Tags">
                         <input class="tagInput"

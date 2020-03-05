@@ -18,7 +18,7 @@ import { AttendNavbarComponent } from './components/attend-navbar/attend-navbar.
 import { CreateEventComponent } from './components/create-event/create-event.component';
 import { EventModalComponent } from './components/event-modal/event-modal.component';
 import { TagsComponent } from './components/tags/tags.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
@@ -27,7 +27,9 @@ import {MatRadioModule} from '@angular/material/radio';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material';
 import {MatChipsModule} from '@angular/material/chips';
-import {MatIconModule} from '@angular/material/icon';
+import {MatIconModule} from '@angular/material/icon'; 
+import { AuthInterceptor } from './services/auth.interceptor';
+import { ShrinkTextPipe } from './pipes/shrink-text.pipe';
 
 @NgModule({
   declarations: [
@@ -47,6 +49,7 @@ import {MatIconModule} from '@angular/material/icon';
     EventModalComponent,
     TagsComponent,
     AddCompComponent,
+    ShrinkTextPipe,
   ],
   imports: [
     BrowserModule,
@@ -62,7 +65,13 @@ import {MatIconModule} from '@angular/material/icon';
     ToastrModule.forRoot(),
     NgxMaterialTimepickerModule 
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+      }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

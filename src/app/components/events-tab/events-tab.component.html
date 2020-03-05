@@ -1,19 +1,19 @@
-<div class="ui  three column  stackable grid container">
+<div class="ui  three column  stackable grid container" *ngIf="events">
         <div class="column" *ngFor="let event of events">
-            <div class="col-content" [ngStyle]="{background : 'url(' + event.image +')'}">
+            <div class="col-content" [ngStyle]="{background : 'url(' + event.cover +')'}">
             <h2 class="ui header eventTitle">
-                {{event.title}}
+                {{event.event}}
             </h2>
             <div class="ui divider"></div>
             <div class="extra content">
                 <h5 class="ui header left floated">
-                    {{event.people}} People Interested
+                    100 People Interested
                 </h5>
-                <button class="ui positive button right floated interested" (click)="openDetailsModal(event)">
+                <button class="ui positive button right floated interested" (click)="[openDetailsModal(event),modal.getEventData(event._id)]">
                     View Event
                 </button>
             </div>
         </div>
         </div>
 </div>
-<app-event-modal [Event]="currEvent" [showStatus]="status" (toggle)="switchState($event)"></app-event-modal>
+<app-event-modal [Evt]="currEvent"  [showStatus]="status" (toggle)="switchState($event)" #modal></app-event-modal>

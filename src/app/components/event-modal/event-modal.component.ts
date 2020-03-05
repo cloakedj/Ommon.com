@@ -1,17 +1,32 @@
 import { Component, OnInit, Input, Output,EventEmitter } from '@angular/core';
-
+import { ApiService } from 'src/app/services/api-service/api.service';
+import { Observer } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
+import {EventEntity } from '../../entities/event.entity';
 @Component({
   selector: 'app-event-modal',
   templateUrl: './event-modal.component.html',
   styleUrls: ['./event-modal.component.sass']
 })
 export class EventModalComponent implements OnInit {
-  @Input() Event : any;
+  @Input() Evt : any;
   @Input() showStatus : boolean;
   @Output() toggle  = new EventEmitter<boolean>();
-  constructor() { }
+  organizer : any;
+  eventObs$ : Observer<any>;
+  constructor(private api : ApiService,
+    private toastr : ToastrService) { }
 
   ngOnInit() {
+  }
+  getEventData(id : any){
+    this.eventObs$ = {
+      next : data => this.organizer = data["organiser"],
+      error : err => this.toastr.error(err),
+      complete : () => this.toastr.success("Request to get Event Details Completed")
+    }
+    let data = Event;
+    this.api.fetchEventDetails(id).subscribe(this.eventObs$);
   }
   updateParent(state : boolean){
     this.toggle.emit(state);

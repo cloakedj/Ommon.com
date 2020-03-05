@@ -41,9 +41,70 @@ export class ApiService {
       catchError(this.handleError)
     )
   }
+    //Get all the Events for a user
+    getEventsForUser(){
+      return this.http.get(`${this.API_URL}/events/all`)
+      .pipe(
+        catchError(this.handleError)
+      )
+    }
   //Add A New Competition
   postNewCompetition(data : any){
-    return this.http.post(`${this.API_URL}/comps/add`,data)
+    let formData = new FormData();
+    Object.keys(data).forEach((key)=>{
+      formData.append(key,data[key]);
+    })
+    return this.http.post(`${this.API_URL}/comps/add`,formData)
+    .pipe(
+      catchError(this.handleError)
+    )
+  }
+    //Add A New Event
+    postNewEvent(data : any){
+      let formData = new FormData();
+      Object.keys(data).forEach((key)=>{
+        formData.append(key,data[key]);
+      })
+      return this.http.post(`${this.API_URL}/events/add`,formData)
+      .pipe(
+        catchError(this.handleError)
+      )
+    }
+  //Add A New User
+  createNewUser(data : any){
+    let formData = new FormData();
+    Object.keys(data).forEach((key)=>{
+      formData.append(key,data[key]);
+    });
+    return this.http.post(`${this.API_URL}/users/register`,formData)
+    .pipe(
+      catchError(this.handleError)
+    )
+  }
+  //Fetch All Details of a competition
+  fetchCompetitionDetails(id : String){ 
+    return this.http.get(`${this.API_URL}/comps/${id}`)
+    .pipe(
+      catchError(this.handleError)
+    )
+  }
+  //Fetch All Details of an Event
+  fetchEventDetails(id : any){ 
+    return this.http.get(`${this.API_URL}/events/${id}`)
+    .pipe(
+      catchError(this.handleError)
+    )
+  }
+  //Fetch Timeline Details for a user
+  fetchTimelineDetails(){ 
+    return this.http.get(`${this.API_URL}/users/timeline`)
+    .pipe(
+      catchError(this.handleError)
+    )
+  }
+  //Attend A Competition
+  attendCompetition(id : string){
+    return this.http.get(`${this.API_URL}/comps/attend/${id}`)
     .pipe(
       catchError(this.handleError)
     )

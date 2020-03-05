@@ -21,7 +21,7 @@ const routes: Routes = [
     path:'signup', component:SignupComponent
   },
   {
-    path:'competition-page', component:CompetitionPageComponent
+    path:'competition-page/:id', component:CompetitionPageComponent
   },
   {
     path : 'create-event', component : CreateEventComponent

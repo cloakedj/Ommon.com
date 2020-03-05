@@ -3,7 +3,7 @@
     <h3 class="ui centered header row">
         Timeline
     </h3>
-        <div class="ui grid">
+        <div class="ui grid" *ngFor="let event of timeline">
             <div class="two wide stretchable column">
                 <div class="notif-label">
                     <i class="ui user icon"></i>
@@ -15,77 +15,25 @@
             <div class="fourteen wide column">
                 <h3 class="ui top attached success message">
                     <i class="check icon"></i>
-                    Participating In A Competition 
+                    {{event.eveId}}
+                    <a class="ui right floated black label small header">{{event.pointsAwarded}}</a>
                 </h3>
             <div class="ui attached segment">
-                <a class="ui orange left ribbon label">All The Best!</a>
+                <a class="ui orange left ribbon label">{{event.messageType}}</a>
                 <h3 class="ui header right floated">
-                    Friday, 23 January
+                    {{event.date | date}}
                 </h3>
                     <div class="ui header">
                     <img class="ui avatar image" src="assets/comps.gif">
-                    You Are Participating In <a>Hackathon Event</a>
+                    {{event.message}}
                     </div>
                 
             </div>
         </div>
         </div>
-        <div class="ui grid">
-            <div class="two wide stretchable column">
-                <div class="notif-label">
-                    <i class="ui trophy icon"></i>
-                </div>
-                <div class="stretched-divider">
-
-                </div>
-            </div>
-            <div class="fourteen wide column">
-                <h3 class="ui top attached yellow message">
-                    <i class="check icon"></i>
-                    Won A Competition
-                </h3>
-            <div class="ui attached segment">
-                <a class="ui teal left ribbon label">Congratulations!</a>
-                <h3 class="ui header right floated">
-                    Monday, 28 January
-                </h3>
-                    <div class="ui header">
-                    <img class="ui avatar image" src="assets/comps.gif">
-                    You Won The <a>Hackathon Event</a>.
-                    </div>
-                
-            </div>
-        </div>
-        </div>
-        <div class="ui grid">
-            <div class="two wide stretchable column">
-                <div class="notif-label">
-                    <i class="ui user icon"></i>
-                </div>
-                <div class="stretched-divider">
-
-                </div>
-            </div>
-            <div class="fourteen wide column">
-                <h3 class="ui top attached blue message">
-                    <i class="check icon"></i>
-                    Started Using Ommon.com
-                </h3>
-            <div class="ui attached segment">
-                <a class="ui purple left ribbon label">Welcome Aboard!</a>
-                <h3 class="ui header right floated">
-                    Sunday, 20 January
-                </h3>
-                    <div class="ui header">
-                    <img class="ui avatar image" src="assets/comps.gif">
-                    You started using ommon platform.
-                    </div>
-                
-            </div>
-        </div>
-        </div>
-        <button class="ui primary fluid button">
+        <!-- <button class="ui primary fluid button">
             View Previous Activity
-        </button>
+        </button> -->
     </div>
 </div>
+<div class="ui divider"></div>

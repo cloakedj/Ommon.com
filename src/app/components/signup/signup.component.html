@@ -22,12 +22,9 @@
                   Name Should Be 30 Characters or less.
                 </strong></p>
                 </a>
-                <a class="list-item" *ngIf="pNumber.invalid">
-                  <p *ngIf="pNumber.errors?.required"><strong>
-                    Phone Number Is Required
-                  </strong></p>
-                  <p *ngIf="pNumber.errors?.minlength || pNumber.errors?.maxlength || pNumber.errors?.pattern"><strong>
-                    Enter a Valid phone Number
+                <a class="list-item" *ngIf="username.invalid">
+                  <p *ngIf="username.errors?.required"><strong>
+                    Ussername Is Required
                   </strong></p>
                   </a>
                   <a class="list-item" *ngIf="email.invalid">
@@ -38,27 +35,29 @@
                       Enter a Valid Email Address
                     </strong></p>
                     </a>
-                    <a class="list-item" *ngIf="dob.invalid">
-                      <p *ngIf="dob.errors?.required"><strong>
-                        Date Of Birth Is Required
+                    <a class="list-item" *ngIf="password.invalid">
+                      <p *ngIf="password.errors?.required"><strong>
+                        Password Is Required
                       </strong></p>
                       </a>
-                      <a class="list-item" *ngIf="collegeName.invalid">
-                        <p *ngIf="collegeName.errors?.required"><strong>
+                      <a class="list-item" *ngIf="institution.invalid">
+                        <p *ngIf="institution.errors?.required"><strong>
                           College Name Is Required
                         </strong></p>
-                        <p *ngIf="collegeName.errors?.pattern"><strong>
-                            College Name Can Only Contain Characters.
-                        </strong></p>
                         </a>
-                        <a class="list-item" *ngIf="courseName.invalid">
-                          <p *ngIf="courseName.errors?.required"><strong>
+                        <a class="list-item" *ngIf="course.invalid">
+                          <p *ngIf="course.errors?.required"><strong>
                             Course Name Is Required
                           </strong></p>
-                          <p *ngIf="collegeName.errors?.pattern"><strong>
+                          <p *ngIf="course.errors?.pattern"><strong>
                               Course Name Can Only Contain Characters.
                           </strong></p>
                           </a>
+                          <a class="list-item" *ngIf="interests.invalid">
+                            <p *ngIf="interests.errors?.required"><strong>
+                              Interests Are A Required Field.
+                            </strong></p>
+                            </a>
                         <a class="list-item" *ngIf="policyAgreement.invalid">
                           <p *ngIf="policyAgreement.errors?.required"><strong>
                             Please Agree To Ommon Terms And Conditions.
@@ -67,30 +66,51 @@
               </div>
               </div>
             </article>
-            <form [formGroup]="signUpForm">
+            <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
             <div class="field input-control">
                 <input type="text" formControlName="name" class="input-contains-icon" placeholder="Your Name"/>
                 <span class="icon"><i class="fa fa-wrapper fa-user"></i></span>
             </div>
             <div class="field input-control">
-                <input type="text" formControlName="pNumber" class="input-contains-icon" placeholder="Your Phone Number"/>
-                <span class="icon"><i class="fa fa-wrapper fa-phone"></i></span>
+                <input type="text" formControlName="username" class="input-contains-icon" placeholder="Your Unique Username"/>
+                <span class="icon"><i class="fas fa-signature"></i></span>
             </div>
             <div class="field input-control">
                 <input type="email" formControlName="email" class="input-contains-icon" placeholder="Your Email"/>
                 <span class="icon"><i class="fa fa-wrapper fa-envelope"></i></span>
             </div>
             <div class="field input-control">
-                <input type="text" formControlName="dob" class="input-contains-icon" placeholder="Your Date Of birth"/>
-                <span class="icon"><i class="fa fa-wrapper fa-calendar"></i></span>
+                <input type="password" formControlName="password" class="input-contains-icon" placeholder="Your Password"/>
+                <span class="icon"><i class="fas fa-key"></i></span>
             </div>
             <div class="field input-control">
-                <input type="text" formControlName="collegeName" class="input-contains-icon" placeholder="What Is The Name Of your College?"/>
+                <input type="text" formControlName="institution" class="input-contains-icon" placeholder="What Is The Name Of your College?"/>
                 <span class="icon"><i class="fa fa-wrapper fa-university"></i></span>
             </div>
             <div class="field input-control">
-                <input type="text"formControlName="courseName" class="input-contains-icon" placeholder="Which Course Are You Pursuing?"/>
+                <input type="text"formControlName="course" class="input-contains-icon" placeholder="Which Course Are You Pursuing?"/>
                 <span class="icon"><i class="fa fa-wrapper fa-graduation-cap"></i></span>
+            </div>
+            <div class="field input-control">
+            <mat-chip-list #chipList aria-label="Add Tags">
+              <input class="tagInput input-contains-icon"
+                      placeholder="You Interests"
+                     [matChipInputFor]="chipList"
+                     [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                     [matChipInputAddOnBlur]="addOnBlur"
+                     (matChipInputTokenEnd)="add($event)"
+                     formControlName="interests">
+                     <span class="icon"><i class="fas fa-th-list"></i></span>
+                     <mat-chip *ngFor="let tag of tagsArr" [selectable]="selectable"
+                     [removable]="removable" (removed)="remove(tag)">
+              {{tag.name}}
+              <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+            </mat-chip>
+            </mat-chip-list>
+            </div>
+            <div class="field input-control">
+              <input type="file" (change)="uploadFile($event)" class="input-contains-icon">
+              <span class="icon"><i class="far fa-image"></i></span>
             </div>
             <div class="field input-control">
                 <input type="checkbox" formControlName="policyAgreement" class="input-contains-icon"/>
@@ -98,7 +118,7 @@
             </div>
             <div class="level">
                 <button class="button is-success fluid" [disabled]="signUpForm.pristine || signUpForm.invalid"
-                (click)="uploadStudentInformation(signUpForm.value)">
+                >
                     <span class="icon">
                         <i class="fas fa-check"></i>
                       </span>

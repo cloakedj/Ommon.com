@@ -1,4 +1,4 @@
-export class Event{
+export class EventEntity{
       _id?: String; 
       event:String;
       organiser:String;

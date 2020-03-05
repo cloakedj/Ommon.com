@@ -13,7 +13,7 @@
     <div class="ui centered stackable link cards" *ngIf="competitions">
     <div class="ui card" *ngFor="let comp of competitions">
         <div class="content">
-          <div class="ui sub header">{{comp.date}} @ {{comp.time}}</div>
+          <div class="ui sub header">{{comp.date | date}} @ {{comp.time}}</div>
         </div>
         <div class="content">
           <h2 class="ui header">{{comp.comp}}</h2>
@@ -33,10 +33,15 @@
           </div>
         </div>
         <div class="extra content">
-            <a href="/competition-page">
+            <a [routerLink]="['/competition-page',comp._id]">
               <button class="ui red left floated button">View Competition</button>
             </a>
-          <button class="ui black right floated button">Attend</button>
+              <button class="ui black right floated button" (click)="attendComp(comp._id)" *ngIf="!comp.participants.includes(userId) else attending">Attend</button>
+            <ng-template #attending>
+              <a class="ui red right corner label">
+                <i class="check icon"></i>
+              </a>
+            </ng-template>
         </div>
       </div>
     </div>

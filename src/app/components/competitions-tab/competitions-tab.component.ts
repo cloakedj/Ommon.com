@@ -10,6 +10,7 @@ import { Observer } from 'rxjs';
 })
 export class CompetitionsTabComponent implements OnInit {
   compsObs$ : Observer<any>;
+  userId : string;
   competitions : [];
   constructor(
     private api: ApiService,
@@ -17,6 +18,7 @@ export class CompetitionsTabComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.userId = localStorage.getItem("user");
     this.compsObs$ = {
       next : data => {
         console.log("Fetched Competitons",data);
@@ -26,6 +28,13 @@ export class CompetitionsTabComponent implements OnInit {
       complete : () => this.toastr.success("Request To Fetch Competions Completed") 
     }
     this.api.getCompetitionsForUser().subscribe(this.compsObs$);
+  }
+  attendComp(id : string){
+    this.api.attendCompetition(id).subscribe(
+      data => this.toastr.success("Successfully Registered For The Event"),
+      err => this.toastr.error(err),
+      () => this.toastr.info("Request To Attend Cometition Completed")
+    )
   }
   categories =[
     {title : 'Technology', image: 'assets/tech.jpg'},

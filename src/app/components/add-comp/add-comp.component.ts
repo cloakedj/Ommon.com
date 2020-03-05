@@ -26,7 +26,8 @@ export class AddCompComponent implements OnInit {
     time:['',Validators.required],
     status:['', Validators.required],
     venue:['',Validators.required],
-    tags: ['']
+    tags: [''],
+    cover: [null]
   });
   back : string;
   visible = true;
@@ -55,15 +56,10 @@ export class AddCompComponent implements OnInit {
     this.tagsArr = [];
   }
   uploadFile(event) {
-    for (let index = 0; index < event.target.files.length; index++) {
-    const element = event.target.files[index];
-    const reader = new FileReader();
-        reader.readAsDataURL(event.target.files[index]);
-        reader.onload = () => { 
-          this.image = reader.result;
-          this.cd.markForCheck();
-        };
-      }
+    let image = event.target.files[0];
+    this.addComp.patchValue({
+      cover : image
+    });
     } 
 
   ngOnInit() {
