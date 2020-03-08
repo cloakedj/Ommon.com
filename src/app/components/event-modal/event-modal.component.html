@@ -7,7 +7,7 @@
             <div class="ui centered medium header">
                 <img class="ui rounded medium image" *ngIf="organizer" src="{{organizer.logo}}">
                 <div class="content">
-                    <a class="header" *ngIf="organizer">{{organizer.name}}r</a>
+                    <a class="header" *ngIf="organizer">{{organizer.name}}</a>
                   </div>
             </div>
             <div class="ui centered header">
@@ -35,6 +35,22 @@
                               </a>
                             </div>
                           </div>
+                          <div class="item">
+                            <i class="clock outline icon"></i>
+                            <div class="content">
+                              <a class="header">
+                                <b>{{Evt.time}}</b>
+                              </a>
+                            </div>
+                          </div>
+                          <div class="item">
+                            <i class="calendar alternate outline icon"></i>
+                            <div class="content">
+                              <a class="header">
+                                <b>{{Evt.date | date}}</b>
+                              </a>
+                            </div>
+                          </div>
                           <div class="ui divider"></div>
                           <div class="item">
                             <p>
@@ -46,15 +62,16 @@
             </div>
             <div class="ui hidden divider"></div>
             <div class="ui computer only row grid container">
-                <!-- <button class="ui positive right labeled icon button">
-                    <i class="heart outline icon"></i>
+              <div class="two ui buttons">
+                <button class="ui positive right labeled icon button" (click)="interested(Evt._id)" *ngIf="!Evt.interested.includes(userId) else interestedBtn">
                     I'm Interested
-                </button> -->
+                </button>
+                <div class="or" *ngIf="!Evt.attenders.includes(userId)"></div>
                 <button (click)="attend(Evt._id)" *ngIf="!Evt.attenders.includes(userId) else attending"
-                class="ui black right labeled icon button right floated left aligned six wide column">
-                    <i class="thumbs up icon"></i>
+                class="ui black right labeled icon button">
                     I'm Attending
                 </button>
+              </div>
             </div>
             <div class="ui mobile only row grid container">
               <div class="ui buttons">
@@ -78,4 +95,10 @@
   <a class="ui red right corner label">
     <i class="check icon"></i>
   </a>
+</ng-template>
+<ng-template #interestedBtn>
+  <button
+  class="ui blue right labeled icon button">
+      You Are Interested
+  </button>
 </ng-template>

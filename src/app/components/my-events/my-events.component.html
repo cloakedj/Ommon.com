@@ -1,0 +1,43 @@
+<div class="ui grid">
+    <div class="sixteen wide column" [ngStyle]="{'background':'url(assets/events.gif)'}">
+        <div class="tagpl">
+            <span class="tag">
+                My Events
+            </span>
+        </div>
+    </div>
+</div>
+<div class="ui  three column  stackable grid container" *ngIf="myEvents">
+    <div class="column" *ngFor="let event of myEvents">
+        <a class="ui red right corner label">
+            <i class="check icon"></i>
+          </a>
+        <div class="col-content" [ngStyle]="{background : 'url(' + event.event.cover +')'}">
+        <h2 class="ui header eventTitle" *ngIf="event.type == 'event'">
+            {{event.event.event}}
+        </h2>
+        <h2 class="ui header eventTitle" *ngIf="event.type != 'event'">
+            {{event.event.comp}}
+        </h2>
+        <div class="ui divider"></div>
+        <div class="extra content">
+            <h5 class="ui header left floated" *ngIf="event.type == 'event'">
+                {{event.event.attenders.length}} Attendees
+            </h5>
+            <h5 class="ui header left floated" *ngIf="event.type != 'event'">
+                {{event.event.participants.length}} Attendees
+            </h5>
+            <a [routerLink]="['/competition-page',event.event._id]" routerLinkActive="active" *ngIf="event.type != 'event'">
+            <button  class="ui positive button right floated interested">
+                View Competition
+            </button>
+            </a>
+            <a *ngIf="event.type == 'event'">
+                <button  class="ui positive button right floated interested">
+                    View Event
+                </button>
+                </a>
+        </div>
+    </div>
+    </div>
+</div>

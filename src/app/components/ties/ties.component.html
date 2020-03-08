@@ -1,0 +1,36 @@
+<div class="ui grid">
+    <div class="sixteen wide column" [ngStyle]="{'background':'url(assets/collabs.gif)'}">
+        <div class="tagpl">
+            <span class="tag">
+                My Ties
+            </span>
+        </div>
+    </div>
+</div>
+<div class="ui four stackable cards" *ngIf="ties && ties.length > 0 else tiespl">
+<div class="ui card" *ngFor="let tie of ties">
+    <a class="image" [routerLink]="['/profile',tie._id]">
+      <img src="{{tie.logo}}">
+    </a>
+    <div class="content">
+      <a class="header" [routerLink]="['/profile',tie._id]">{{tie.name}}</a>
+      <div class="meta">
+        <a class="ui black label" *ngFor="let interest of tie.interests">
+            {{interest}}
+        </a>
+      </div>
+    </div>
+    <div class="extra content">
+        <button class="ui negative fluid button" (click)="cutthisTie(tie._id)">
+            Cut The Tie
+        </button>
+    </div>
+  </div>
+</div>
+<ng-template #tiespl>
+    <div class="ui centered grid container">
+        <h1 class="ui header messagepl">
+            You Don't Have Any Ties Yet. Build Some!
+        </h1>
+</div>
+</ng-template>

@@ -11,6 +11,9 @@ import { CreateEventComponent } from './components/create-event/create-event.com
 import { UserTimelineComponent } from './components/user-timeline/user-timeline.component';
 import { TagsComponent } from './components/tags/tags.component';
 import { AddCompComponent } from './components/add-comp/add-comp.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { MyEventsComponent } from './components/my-events/my-events.component';
+import { TiesComponent } from './components/ties/ties.component';
 
 
 const routes: Routes = [
@@ -34,6 +37,15 @@ const routes: Routes = [
   },
   {
     path : 'tags', component: TagsComponent
+  },
+  {
+    path: 'profile/:id', component: UserProfileComponent
+  },
+  {
+    path : 'myEvents', component: MyEventsComponent
+  },
+  {
+    path : 'ties', component : TiesComponent
   },
   {
     path:'User', component : HomepageComponent,children:[

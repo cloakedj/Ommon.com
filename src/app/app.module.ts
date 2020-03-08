@@ -30,6 +30,9 @@ import {MatChipsModule} from '@angular/material/chips';
 import {MatIconModule} from '@angular/material/icon'; 
 import { AuthInterceptor } from './services/auth.interceptor';
 import { ShrinkTextPipe } from './pipes/shrink-text.pipe';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { TiesComponent } from './components/ties/ties.component';
+import { MyEventsComponent } from './components/my-events/my-events.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +53,9 @@ import { ShrinkTextPipe } from './pipes/shrink-text.pipe';
     TagsComponent,
     AddCompComponent,
     ShrinkTextPipe,
+    UserProfileComponent,
+    TiesComponent,
+    MyEventsComponent,
   ],
   imports: [
     BrowserModule,

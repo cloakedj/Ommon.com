@@ -26,7 +26,6 @@ export class EventModalComponent implements OnInit {
       error : err => this.toastr.error(err),
       complete : () => this.toastr.success("Request to get Event Details Completed")
     }
-    let data = Event;
     this.api.fetchEventDetails(id).subscribe(this.eventObs$);
   }
   updateParent(state : boolean){
@@ -34,9 +33,23 @@ export class EventModalComponent implements OnInit {
   }
   attend(id){
     this.api.attendEvent(id).subscribe(
-      data => this.toastr.success("Successfully Enrolled In The Event"),
+      data => 
+      {
+        this.toastr.success(data["message"]);
+        this.getEventData(id);
+      },
       error => this.toastr.error(error),
       () => this.toastr.info("Request to attend event completed")
+    )
+  }
+  interested(id){
+    this.api.addOneToInterested(id).subscribe(
+      data => {
+        this.toastr.success(data["message"]);
+        this.getEventData(id);
+      },
+      err => this.toastr.error(err),
+      () => this.toastr.info("Request to add interested Completed")
     )
   }
 

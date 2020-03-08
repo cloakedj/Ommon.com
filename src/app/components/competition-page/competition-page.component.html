@@ -1,4 +1,7 @@
 <div class="ui parent container" *ngIf="compDetails">
+    <div class="ui info message" *ngIf="compDetails.participants.includes(userId)">
+        You Are Attending This Competition
+    </div>
 <div class="ui stackable grid container">
     <div class="nine wide column">
         <img class="ui big rounded image" src="{{compDetails.cover}}">
@@ -40,24 +43,49 @@
             Organizer
         </h3>
         <div class="row">
-            <img class="ui tiny rounded image" src="{{organiser.logo}}">
+            <a [routerLink]="['/profile',organiser._id]">
+                <img class="ui tiny rounded image" src="{{organiser.logo}}">
+            </a>
         </div>
         <h3 class="ui header">
             Attendees ({{compDetails.participants.length}})
         </h3>
+        <ng-container *ngIf="participants">
         <div class="row">
-            <img class="ui avatar image" src="assets/loginback.jpg">
-            <img class="ui avatar image" src="assets/loginback.jpg">
-            <img class="ui avatar image" src="assets/loginback.jpg">
-            <img class="ui avatar image" src="assets/loginback.jpg">
+           <a *ngFor="let participant of participants" [routerLink]="['/profile',participant._id]">
+            <img class="ui avatar image" src="{{participant.logo}}" aria-label="Competition Participant" alt="{{participant.name}}">
+        </a> 
         </div>
+        </ng-container>
         <div class="ui hidden divider"></div>
-        <button class="ui positive button">
+        <button class="ui positive button" (click)="showStatus = true">
             View All
         </button>
     </div>
 </div>
 </div>
-<app-attend-navbar [date]="compDetails.date" [time]="compDetails.time" [title]="compDetails.comp" [participants]="compDetails.participants"></app-attend-navbar>
+<app-attend-navbar [compId]="compDetails._id" [date]="compDetails.date" [time]="compDetails.time" [title]="compDetails.comp" [participants]="compDetails.participants"></app-attend-navbar>
 
+<div class="ui centered grid container" *ngIf="showStatus">
+    <div class="six wide computer fourteen wide mobile twelve wide tablet column">
+        <div class="ui raise segment">
+        <div class="ui centered header">
+            <h3 class="ui header">
+                All Attendees
+            </h3>
+            <div class="ui divider"></div>
+        </div>
+        <div class="ui list">
+            <div class="item" *ngFor="let participant of participants">
+                <img class="ui avatar image" src="{{participant.logo}}">
+                <div class="content">
+                  <a class="header" [routerLink]="['/profile',participant._id]">{{participant.name}}</a>
+                  <div class="description">@{{participant.username}}</div>
+                </div>
+              </div>
+        </div>
+        <button class="ui negative fluid button" (click)="showStatus = false">Close</button>
+        </div>
+    </div>
+</div>
 

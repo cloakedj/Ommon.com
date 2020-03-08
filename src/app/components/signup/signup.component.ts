@@ -71,8 +71,8 @@ export class SignupComponent implements OnInit {
     this.signUpData = this.signUpForm.value;
     this.createUserObs$ = {
       next : data => {
-        this.toastr.success(data);
-        this.router.navigateByUrl('/User/(HomeRouter:competitions)');
+        this.toastr.success(data["message"]);
+        this.router.navigateByUrl('/login');
       },
       error : err => this.toastr.error(err),
       complete : () => this.toastr.info("Request To Add New User Completed")

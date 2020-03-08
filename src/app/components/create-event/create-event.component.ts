@@ -49,7 +49,7 @@ export class CreateEventComponent implements OnInit {
     this.addEvent.controls['tags'].setValue(this.tagsArr);
     this.eventData = this.addEvent.value;
     this.postEventObs$ = {
-      next : data => this.toastr.success(data),
+      next : data => this.toastr.success(data["message"]),
       error : err => this.toastr.error(err),
       complete : () => this.toastr.info("Request To Add New Competition Completed")
     }

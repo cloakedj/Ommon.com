@@ -96,8 +96,8 @@ export class ApiService {
     )
   }
   //Fetch Timeline Details for a user
-  fetchTimelineDetails(){ 
-    return this.http.get(`${this.API_URL}/users/timeline`)
+  fetchTimelineDetails(id : string){ 
+    return this.http.get(`${this.API_URL}/users/timeline/${id}`)
     .pipe(
       catchError(this.handleError)
     )
@@ -123,4 +123,46 @@ export class ApiService {
       catchError(this.handleError)
     )
   }
+  //get user details
+  getUserDetails(id : string){
+    return this.http.get(`${this.API_URL}/users/${id}`)
+    .pipe(
+      catchError(this.handleError)
+    )
+  }
+  //Build a tie
+  buildATie(id : string){
+    return this.http.get(`${this.API_URL}/users/add-tie/${id}`)
+    .pipe(
+      catchError(this.handleError)
+    )
+  }
+    //Cut the tie
+    cutTheTie(id : string){
+      return this.http.get(`${this.API_URL}/users/remove-tie/${id}`)
+      .pipe(
+        catchError(this.handleError)
+      )
+    }
+    //Event Interested
+    addOneToInterested(id : string){
+      return this.http.get(`${this.API_URL}/events/interested/${id}`)
+      .pipe(
+        catchError(this.handleError)
+      )
+    }
+    //My Events
+    getMyEvents(){
+      return this.http.get(`${this.API_URL}/users/myEvents`)
+      .pipe(
+        catchError(this.handleError)
+      )
+    }
+    //My Ties
+    getMyTies(){
+      return this.http.get(`${this.API_URL}/users/ties`)
+      .pipe(
+        catchError(this.handleError)
+      )
+    }
 }

@@ -35,7 +35,7 @@
               </a>
             </p>
             <p class="control">
-              <button class="ui negative button">
+              <button class="ui negative button" (click)="attendComp()" *ngIf="!participants.includes(userId) else attending">
                   Attend
               </button>
             </p>
@@ -49,3 +49,8 @@
       </div>
     </div>
   </nav>
+  <ng-template #attending>
+    <button class="ui positive button">
+      Attending
+    </button>
+  </ng-template>

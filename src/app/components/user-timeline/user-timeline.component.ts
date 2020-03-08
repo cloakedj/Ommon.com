@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api-service/api.service';
 import { Observer } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-user-timeline',
@@ -10,13 +11,21 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class UserTimelineComponent implements OnInit {
   timeline : [];
+  userId : string;
   timelineObs$ : Observer<any>;
   constructor(
     private api: ApiService,
-    private toastr : ToastrService
+    private toastr : ToastrService,
+    private aroute : ActivatedRoute
     ) { }
 
   ngOnInit() {
+    this.aroute.params.subscribe(param =>{
+      this.userId = param["id"];
+      this.getTimelineData();
+    })
+  }
+  getTimelineData(){
     this.timelineObs$ = {
       next : data => {
         console.log(data);
@@ -25,7 +34,7 @@ export class UserTimelineComponent implements OnInit {
       error : err => this.toastr.error(err),
       complete : () => this.toastr.success("Request To Fetch Timeline Data Completed.")
     }
-    this.api.fetchTimelineDetails().subscribe(this.timelineObs$);
+    this.api.fetchTimelineDetails(this.userId).subscribe(this.timelineObs$);
   }
 
 }

@@ -1,8 +1,8 @@
-<div class="ui centered grid container">
     <div class="twelve wide column timeline">
     <h3 class="ui centered header row">
         Timeline
     </h3>
+    <ng-container *ngIf="timeline && timeline.length > 0 else timelinePlaceholder">
         <div class="ui grid" *ngFor="let event of timeline">
             <div class="two wide stretchable column">
                 <div class="notif-label">
@@ -34,6 +34,11 @@
         <!-- <button class="ui primary fluid button">
             View Previous Activity
         </button> -->
+    </ng-container>
     </div>
-</div>
-<div class="ui divider"></div>
+
+<ng-template #timelinePlaceholder>
+    <h1 class="ui header messagepl">
+        Nothing To See Here! No Activity Yet.
+    </h1>
+</ng-template>

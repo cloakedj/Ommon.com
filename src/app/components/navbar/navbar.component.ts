@@ -10,6 +10,7 @@ import { ApiService } from 'src/app/services/api-service/api.service';
 })
 export class NavbarComponent implements OnInit {
   modalOpenState = false;
+  userId = localStorage.getItem("user");
   constructor(private router : Router,
     private toastr : ToastrService,
     private api : ApiService) { }
@@ -25,12 +26,12 @@ export class NavbarComponent implements OnInit {
   logOut(){
     this.api.logUserOut().subscribe(
       data => {
+        this.toastr.info(data["message"]);
         localStorage.removeItem("user");
       },
       err => this.toastr.error(err),
       () => 
       {
-        this.toastr.info("Logged Out Successfully");
         this.router.navigate(['/login']);
       }
     )

@@ -47,7 +47,7 @@ export class AddCompComponent implements OnInit {
     this.addComp.controls['tags'].setValue(this.tagsArr);
     this.compData = this.addComp.value;
     this.postCompObs$ = {
-      next : data => this.toastr.success(data),
+      next : data => this.toastr.success(data["message"]),
       error : err => this.toastr.error(err),
       complete : () => this.toastr.info("Request To Add New Competition Completed")
     }

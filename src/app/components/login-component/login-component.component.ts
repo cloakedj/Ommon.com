@@ -29,7 +29,8 @@ export class LoginComponentComponent implements OnInit {
   login(data : any){
     this.loginObs$ = {
       next: data => {
-        localStorage.setItem("user",data["_id"]);
+        let user = data["user"];
+        localStorage.setItem("user",user._id);
         this.router.navigate(['/User']);
       },
       error: err => this.toastr.error(err),

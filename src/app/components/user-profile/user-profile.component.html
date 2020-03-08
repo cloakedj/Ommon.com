@@ -1,0 +1,64 @@
+<div class="ui stackable grid">
+    <div class="left floated four wide column">
+        <ng-container *ngIf="userData">
+        <img class="ui centered medium rounded image" src="{{userData.logo}}">
+        <div class="ui hidden divider"></div>
+        <ng-container *ngIf="loggedInUserData && loggedInUserId !== userData._id">
+        <div class="ui center aligned row">
+        <button class="positive ui button" *ngIf="!loggedInUserData.tiesId.includes(userData._id) else cutTie"
+        (click)="buildTie()">Build A Tie</button>
+        </div>
+        </ng-container>
+        <div class="ui hidden divider"></div>
+        <div class="ui center aligned row">
+            <div class="ui yellow label">
+                Active Ties
+                <div class="detail">{{userData.tiesId.length}}</div>
+              </div>
+        </div>
+        <div class="ui hidden divider"></div>
+        <div class="ui center aligned row">
+            <div class="ui purple label">
+                Total Points Obtained
+                <div class="detail">{{userData.pointsObtained}}</div>
+              </div>
+        </div>
+        <div class="ui hidden divider"></div>
+        <div class="center aligned row">
+            <div class="ui blue labels">
+            <a class="ui label" *ngFor="let tag of userData.interests">{{tag}}</a>
+            </div>
+            </div>
+        <div class="ui divider"></div>
+        <div class="user-data">
+        <h4 class="ui header">
+            <span class="icon"><i class="fa fa-wrapper fa-user"></i></span>   
+          {{userData.name}}
+        </h4>
+        <h4 class="ui header">
+            <span class="icon"><i class="fas fa-signature"></i></span>
+            @{{userData.username}}
+        </h4>
+        <h4 class="ui header">
+            <span class="icon"><i class="fa fa-wrapper fa-envelope"></i></span>
+           {{userData.email}}
+        </h4>
+        <h4 class="ui header">
+            <span class="icon"><i class="fa fa-wrapper fa-university"></i></span>
+            {{userData.institution}}
+        </h4>
+        <h4 class="ui header">
+            <span class="icon"><i class="fa fa-wrapper fa-graduation-cap"></i></span>
+            {{userData.course}}
+        </h4>
+        </div>
+        <div class="ui hidden divider"></div>
+        </ng-container>
+    </div>
+    <div class="right floated twelve wide column">
+        <app-user-timeline></app-user-timeline>
+    </div>
+</div>
+<ng-template #cutTie>
+    <button class="negative ui button" (click)="cutthisTie()">Cut the Tie</button>
+</ng-template>

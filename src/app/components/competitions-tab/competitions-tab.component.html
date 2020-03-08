@@ -17,6 +17,9 @@
         </div>
         <div class="content">
           <h2 class="ui header">{{comp.comp}}</h2>
+          <a class="ui black label" *ngFor="let tag of comp.tags">
+            {{tag}}
+          </a>
           <a class="ui orange label">{{comp.status}}</a>
           <div class="ui small feed">
             <div class="event">
@@ -24,10 +27,7 @@
                 <div class="summary">
                    <h4 class="ui header">{{comp.venue}}</h4>
                 </div>
-                <div class="ui sub header">
-                    <i class="map marker alternate icon"></i> {{comp.organiser}}
-                </div>
-                <div class="ui sub header">300 Attendees</div>
+                <div class="ui sub header">{{comp.participants.length}} Attendees</div>
               </div>
             </div>
           </div>

@@ -12,8 +12,12 @@ import { ActivatedRoute } from '@angular/router';
 export class CompetitionPageComponent implements OnInit {
   compId : String;
   compObs$ : Observer<any>;
-  compDetails : Object;
-  organiser : Object;
+  compDetails : any;
+  organiser : any;
+  participants = [];
+  userId = localStorage.getItem("user");
+  participantsObs$ : Observer<any>;
+  showStatus = false;
   constructor(
     private api: ApiService,
     private toastr : ToastrService,
@@ -25,6 +29,7 @@ export class CompetitionPageComponent implements OnInit {
       next : data => {
         this.compDetails = data["comp"];
         this.organiser = data["organizer"];
+        this.getParticipants();
         this.toastr.info("Fetched Competition Details")
       },
       error : err => this.toastr.error(err),
@@ -35,6 +40,20 @@ export class CompetitionPageComponent implements OnInit {
       this.api.fetchCompetitionDetails(this.compId).subscribe(this.compObs$);
     });
 
+  }
+  getParticipants(){
+    this.participantsObs$ = {
+      next : data => 
+      {
+        this.participants.push(data["user"]);
+        console.log(this.participants);
+      },
+      error : err => console.log(err),
+      complete : () => console.log("Fetched User")
+    }
+    this.compDetails.participants.forEach(user => {
+      this.api.getUserDetails(user).subscribe(this.participantsObs$);
+    });
   }
 
 }
