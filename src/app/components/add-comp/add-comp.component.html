@@ -10,7 +10,7 @@
                         <label>Competition Title</label>
                       <input formControlName="comp" type="text">
                       <div class="ui pointing red basic label"  *ngIf="comp.errors?.required && !comp.pristine">
-                            comp Is Required
+                            Competition Title Is Required
                      </div>
                     </div>
                     <div class="field">
@@ -81,6 +81,12 @@
                         <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
                       </mat-chip>
                       </mat-chip-list>
+                        </div>
+                        <div class="field">
+                          <label>Do You Want The Event To Be Sponsored?</label>
+                          <h5 class="ui header">
+                            <mat-slide-toggle (change)="getSponsoredValue()">
+                              Yes Sponsor My Event</mat-slide-toggle></h5>
                         </div>
                         <div class="field">
                           <div class="two ui buttons">

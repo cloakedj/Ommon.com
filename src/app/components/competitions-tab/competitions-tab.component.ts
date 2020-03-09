@@ -12,6 +12,8 @@ export class CompetitionsTabComponent implements OnInit {
   compsObs$ : Observer<any>;
   userId : string;
   competitions : [];
+  sponsoredComp : any;
+  sponsoredCompObs$ : Observer<any>;
   constructor(
     private api: ApiService,
     private toastr : ToastrService
@@ -20,6 +22,7 @@ export class CompetitionsTabComponent implements OnInit {
   ngOnInit() {
     this.userId = localStorage.getItem("user");
     this.getCompetitions();
+    this.getSponsored();
   }
   attendComp(id : string){
     this.api.attendCompetition(id).subscribe(
@@ -42,6 +45,14 @@ export class CompetitionsTabComponent implements OnInit {
       complete : () => this.toastr.success("Request To Fetch Competions Completed") 
     }
     this.api.getCompetitionsForUser().subscribe(this.compsObs$);
+  }
+  getSponsored(){
+    this.sponsoredCompObs$ = {
+      next : data => this.sponsoredComp = data["sponsoredcomp"],
+      error : err => this.toastr.error(err),
+      complete : () => this.toastr.info("Fetched Sponsored Competition")
+    }
+    this.api.getSponsored().subscribe(this.sponsoredCompObs$);
   }
   categories =[
     {title : 'Technology', image: 'assets/tech.jpg'},

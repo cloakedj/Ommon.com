@@ -17,6 +17,7 @@ export class AddCompComponent implements OnInit {
   postCompObs$ : Observer<any>;
   image : any;
   compData = new FormData();
+  sponsored = false;
   addComp: FormGroup = this.formBuilder.group({
     comp:['',Validators.required],
     info:['',Validators.required],
@@ -27,7 +28,8 @@ export class AddCompComponent implements OnInit {
     status:['', Validators.required],
     venue:['',Validators.required],
     tags: [''],
-    cover: [null]
+    cover: [null],
+    sponsored : ['']
   });
   back : string;
   visible = true;
@@ -45,6 +47,8 @@ export class AddCompComponent implements OnInit {
   onSubmit(){
     this.tagsArr = this.tagsArr.map(el => el.name);
     this.addComp.controls['tags'].setValue(this.tagsArr);
+    console.log(this.sponsored);
+    this.addComp.controls['sponsored'].setValue(this.sponsored);
     this.compData = this.addComp.value;
     this.postCompObs$ = {
       next : data => this.toastr.success(data["message"]),
@@ -58,7 +62,7 @@ export class AddCompComponent implements OnInit {
   uploadFile(event) {
     let image = event.target.files[0];
     this.addComp.patchValue({
-      cover : image
+      cover : image,
     });
     } 
 
@@ -93,6 +97,9 @@ export class AddCompComponent implements OnInit {
     if (index >= 0) {
       this.tagsArr.splice(index, 1);
     }
+  }
+  getSponsoredValue(){
+    this.sponsored = !this.sponsored;
   }
 
 }

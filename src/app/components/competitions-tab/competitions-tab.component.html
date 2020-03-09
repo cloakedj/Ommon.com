@@ -46,36 +46,36 @@
       </div>
     </div>
     <div class="ui divider"></div>
-    <div class="ui raised segment">
+    <div class="ui raised segment" *ngIf="sponsoredComp">
       <div class="ui two column very relaxed stackable grid">
-        <div class="column imagecontainer">
+        <div class="column imagecontainer" [ngStyle]="{background:'url('+sponsoredComp.cover+')'}">
         </div>
         <div class="column">
           <h2 class="ui header">
-            Data Visualisation Using tableau in 90 Minutes
+            {{sponsoredComp.comp}}
           </h2>
           <a class="ui violet label">Sponsored</a>
-          <a class="ui red label">Technology</a>
+          <a class="ui orange label">{{sponsoredComp.status}}</a>
+          <a class="ui red label" *ngFor="let tag of sponsoredComp.tags">{{tag}}</a>
           <div class="ui divider"></div>
-          <h4 class="ui sub header">    
-            <img class="ui mini rounded image" src="assets/loginback.jpg">Christ University Bangalore
+          <h4 class="ui sub header">
+            <i class="map marker alternate icon"></i> {{sponsoredComp.venue}} 
           </h4>
           <h4 class="ui sub header">
-            <i class="map marker alternate icon"></i> Christ Main Campus, Bangalore 
+            <i class="calendar alternate outline icon"></i> {{sponsoredComp.date | date}}
           </h4>
           <h4 class="ui sub header">
-            <i class="calendar alternate outline icon"></i> Fri, 14th february, 2020
+            <i class="clock outline icon"></i>{{sponsoredComp.time}}
           </h4>
           <h4 class="ui sub header">
-            <i class="clock outline icon"></i>5:30 PM
-          </h4>
-          <h4 class="ui sub header">
-            500 Attendees
+            {{sponsoredComp.participants.length}} Attendees
           </h4>
           <div class="ui divider"></div>
           <div class="extra content">
-            <button class="ui positive  right floated button">View Competition</button>
-          <button class="ui olive right floated button">Attend</button>
+            <button class="ui positive  right floated button" [routerLink]="['/competition-page',sponsoredComp._id]"
+            >View Competition</button>
+          <button class="ui olive right floated button"
+          (click)="attendComp(sponsoredComp._id)" *ngIf="!sponsoredComp.participants.includes(userId) else attending">Attend</button>
         </div>
         </div>
       </div>

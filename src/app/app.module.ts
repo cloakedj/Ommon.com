@@ -33,6 +33,7 @@ import { ShrinkTextPipe } from './pipes/shrink-text.pipe';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { TiesComponent } from './components/ties/ties.component';
 import { MyEventsComponent } from './components/my-events/my-events.component';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,8 @@ import { MyEventsComponent } from './components/my-events/my-events.component';
     MatNativeDateModule,
     MatDatepickerModule,
     ToastrModule.forRoot(),
-    NgxMaterialTimepickerModule 
+    NgxMaterialTimepickerModule ,
+    MatSlideToggleModule
   ],
   providers: [
     {

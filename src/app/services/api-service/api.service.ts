@@ -165,4 +165,11 @@ export class ApiService {
         catchError(this.handleError)
       )
     }
+    //Random sponserd Competition
+    getSponsored(){ 
+      return this.http.get(`${this.API_URL}/comps/sponsored`)
+    .pipe(
+      catchError(this.handleError)
+    )
+  }
 }
